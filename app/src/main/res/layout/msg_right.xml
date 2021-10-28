@@ -17,7 +17,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:textColor="#000" />
-        
+
     </LinearLayout>
 
 </FrameLayout>
