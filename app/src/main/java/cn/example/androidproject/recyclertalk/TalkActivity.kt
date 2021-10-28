@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cn.example.androidproject.databinding.MsgLeftBinding
@@ -71,7 +72,7 @@ class TalkActivity : AppCompatActivity() {
 
     private fun initComponent() {
         mBinding.apply {
-            val layoutManager = LinearLayoutManager(this@TalkActivity)
+            val layoutManager = GridLayoutManager(this@TalkActivity,1)
             recyclerViewTalk.layoutManager = layoutManager
             recyclerViewTalk.adapter = adapter
             send.setOnClickListener {
