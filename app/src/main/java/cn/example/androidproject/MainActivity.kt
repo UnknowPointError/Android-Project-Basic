@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import cn.example.androidproject.basic.BasicActivity
 import cn.example.androidproject.databinding.ActivityMainBinding
+import cn.example.androidproject.fragment.NewsActivity
 import cn.example.androidproject.listview.ListActivity
 import cn.example.androidproject.recyclertalk.TalkActivity
 import cn.example.androidproject.recyclerview.RecyclerActivity
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             recyclerViewGrid.setOnClickListener(this@MainActivity)
             recyclerViewLinear.setOnClickListener(this@MainActivity)
             talk.setOnClickListener(this@MainActivity)
+            news.setOnClickListener(this@MainActivity)
         }
     }
 
@@ -43,7 +45,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     putExtra("RecyclerView", "Grid")
                 }
                 recyclerViewLinear.id -> startActivity<RecyclerActivity> { }
-                talk.id -> startActivity<TalkActivity> {  }
+                talk.id -> startActivity<TalkActivity> { }
+                news.id -> startActivity<NewsActivity> { }
             }
         }
     }

@@ -3,9 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout-sw600dp/layout.xml" value="0.1015625" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout-sw600dp/new_content_600.xml" value="0.203515625" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout-sw600dp/new_content_600s.xml" value="0.1015625" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout-sw600dp/news_activity.xml" value="0.29296875" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/layout.xml" value="0.13541666666666666" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/msg_left.xml" value="0.3830439223697651" />
-        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/msg_right.xml" value="0.1" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/msg_right.xml" value="0.4" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/news_activity.xml" value="0.2" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/news_content_600.xml" value="0.13541666666666666" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/news_content_activity.xml" value="0.1" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/news_content_frag.xml" value="0.390625" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/news_item.xml" value="0.390625" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/news_title_frag.xml" value="0.390625" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/talk_activity.xml" value="0.2518518518518518" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/ttes.xml" value="0.2713541666666667" />
       </map>
     </option>
   </component>

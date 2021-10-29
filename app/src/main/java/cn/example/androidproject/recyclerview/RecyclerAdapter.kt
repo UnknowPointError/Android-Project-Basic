@@ -43,6 +43,10 @@ class RecyclerAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(mBinding = FruitBinding.inflate(LayoutInflater.from(parent.context)))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val mBinding = FruitBinding.inflate(LayoutInflater.from(parent.context))
+        val holder = ViewHolder(mBinding)
+        holder.view.setOnClickListener { itemClick(fruitList[holder.adapterPosition]) }
+        return holder
+    }
 }
