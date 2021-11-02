@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import cn.example.androidproject.R
-import cn.example.androidproject.Util.showtoast
+import cn.example.androidproject.Util.showToast
 import cn.example.androidproject.databinding.ListActivityBinding
 import kotlin.collections.ArrayList
 
@@ -38,7 +38,7 @@ class ListActivity : AppCompatActivity() {
 
     private fun initComponent() {
         val value = intent.getStringExtra("listData")
-        showtoast(this, "value = $value")
+        showToast(this, "value = $value")
         if (value == "Basic") {
             mBinding.listview.adapter =
                 ArrayAdapter(this, android.R.layout.simple_list_item_1, data)
@@ -56,10 +56,10 @@ class ListActivity : AppCompatActivity() {
             Log.d(tag,strA)
             if (fruitData.isNotEmpty()) {
                 val str = "You click the ID is $id\n FruitName is ${fruitData[position].fruitName} "
-                showtoast(this, text = str)
+                showToast(this, text = str)
             } else {
                 val str = "You click the ID is $id\n Name is ${data[position]} "
-                showtoast(this, str)
+                showToast(this, str)
             }
         }
     }

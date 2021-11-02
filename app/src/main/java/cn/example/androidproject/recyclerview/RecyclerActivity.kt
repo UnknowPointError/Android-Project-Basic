@@ -2,13 +2,8 @@ package cn.example.androidproject.recyclerview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
-import android.view.View
-import android.widget.GridLayout
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import cn.example.androidproject.R
 import cn.example.androidproject.Util
 import cn.example.androidproject.databinding.RecyclerActivityBinding
@@ -29,7 +24,7 @@ class RecyclerActivity : AppCompatActivity() {
         initFruit()
         val adapter = RecyclerAdapter(fruitData) {
             val str = "You click the name is ${it.fruitName}\nID is ${it.id}"
-            Util.showtoast(this, str)
+            Util.showToast(this, str)
         }
         val layoutManager = when (intent.getStringExtra("RecyclerView")) {
             "Grid" -> GridLayoutManager(this, 2)

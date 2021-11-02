@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="cn.example.androidproject">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -9,6 +12,46 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProject">
+        <activity
+            android:name=".broadcast.LoginOffLineActivity"
+            android:exported="false" />
+        <activity
+            android:name=".broadcast.LoginActivity"
+            android:exported="false" />
+
+        <receiver
+            android:name=".broadcast.ToBootComplete"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".broadcast.MyBroadCast"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="MyBroadCastReceive" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".broadcast.MyAnotherBroadCast"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="1">
+                <action android:name="MyBroadCastReceive" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".broadcast.LoginForceOffLine"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="OFFLINE" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".fragment.NewsActivity"
             android:exported="false" />

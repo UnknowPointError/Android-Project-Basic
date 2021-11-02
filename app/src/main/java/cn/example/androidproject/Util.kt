@@ -1,5 +1,6 @@
 package cn.example.androidproject
 
+import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
 import android.content.res.Configuration
@@ -22,7 +23,15 @@ object Util {
     private var toast: Toast? = null
     lateinit var resources: Resources
 
-    fun showtoast(context: Context, text: String) {
+    fun showToast(context: Context, text: String) {
+        if (toast?.equals(null) == false)
+            (toast ?: return).cancel()//当toast为null时返回冒号后面的值，只有return则退出
+        toast = Toast.makeText(context, text, Toast.LENGTH_SHORT)
+        toast?.show()
+    }
+
+    fun Context.showToasts(text: String) {
+        val context: Context = this as Context
         if (toast?.equals(null) == false)
             (toast ?: return).cancel()//当toast为null时返回冒号后面的值，只有return则退出
         toast = Toast.makeText(context, text, Toast.LENGTH_SHORT)

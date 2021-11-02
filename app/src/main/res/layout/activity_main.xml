@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".MainActivity">
+    android:background="@drawable/a1"
+    tools:context=".MainActivity"
+    android:baselineAligned="false">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -20,7 +21,7 @@
             android:layout_gravity="center_horizontal"
             android:text="Basic"
             android:textAllCaps="false"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <Button
@@ -30,7 +31,7 @@
             android:layout_gravity="center_horizontal"
             android:text="RecyclerView Linear"
             android:textAllCaps="false"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <Button
@@ -40,7 +41,7 @@
             android:layout_gravity="center_horizontal"
             android:text="RecyclerView Grid"
             android:textAllCaps="false"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <Button
@@ -50,7 +51,17 @@
             android:layout_gravity="center_horizontal"
             android:text="News"
             android:textAllCaps="false"
-            android:textSize="15dp"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/loginBroadcast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="LoginBroadCast"
+            android:textAllCaps="false"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
 
@@ -69,7 +80,7 @@
             android:layout_gravity="center_horizontal"
             android:text="Basic ListView"
             android:textAllCaps="false"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <Button
@@ -79,7 +90,7 @@
             android:layout_gravity="center_horizontal"
             android:text="ListView"
             android:textAllCaps="false"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <Button
@@ -89,7 +100,27 @@
             android:layout_gravity="center_horizontal"
             android:text="Talk"
             android:textAllCaps="false"
-            android:textSize="15dp"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/checkMemory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="CheckMemory"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/sendBroadCast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="SendBroadCast"
+            android:textAllCaps="false"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
 

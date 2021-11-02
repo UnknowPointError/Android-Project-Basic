@@ -60,6 +60,7 @@ class BasicActivity : AppCompatActivity() {
         initListener()
     }
 
+    @DelicateCoroutinesApi
     private fun initListener() {
         mBinding.apply {
             imageBtn.setOnClickListener {
@@ -79,10 +80,10 @@ class BasicActivity : AppCompatActivity() {
             splicBtn.setOnClickListener {
                 when {
                     edit1.text.toString() == "" -> {
-                        Util.showtoast(this@BasicActivity, "Please input Username")
+                        Util.showToast(this@BasicActivity, "Please input Username")
                     }
                     edit2.text.toString() == "" -> {
-                        Util.showtoast(this@BasicActivity, "Please input Password")
+                        Util.showToast(this@BasicActivity, "Please input Password")
                     }
                     else -> {
                         text.autoLinkMask
