@@ -43,7 +43,8 @@ class NewsContentActivity : AppCompatActivity() {
         val title = intent.getStringExtra("news_title")
         val content = intent.getStringExtra("news_content")
         if (title != null && content != null) {
-            NewsContentFragment.refresh(title, content)
+            val fragment = supportFragmentManager.findFragmentById(R.id.newsContentFrag) as NewsContentFragment
+            fragment.refresh(title, content)
         }
     }
 }

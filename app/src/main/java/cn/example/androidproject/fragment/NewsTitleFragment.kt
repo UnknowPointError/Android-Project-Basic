@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import cn.example.androidproject.R
+import cn.example.androidproject.databinding.ActivityMainBinding
+import cn.example.androidproject.databinding.NewsActivityBinding
 import cn.example.androidproject.databinding.NewsTitleFragBinding
 import kotlin.properties.Delegates
 
@@ -21,7 +24,7 @@ import kotlin.properties.Delegates
  **************************/
 class NewsTitleFragment : Fragment() {
 
-    private var isTwoPane by Delegates.notNull<Boolean>()
+    private var isTwoPane = true
     private lateinit var mBinding: NewsTitleFragBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +38,8 @@ class NewsTitleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        this.isTwoPane = NewsActivity.mmBinding?.newsContentLayout != null
+//        this.isTwoPane = activity?.findViewById<View>(R.id.newsContentFrag) != null
+//        Log.e("eeea", "${activity?.findViewById<View>(R.id.newsContentLayout) != null}")
         val layoutManager = LinearLayoutManager(activity)
         val adapter = NewsAdapter(getNews(), isTwoPane)
         mBinding.apply {

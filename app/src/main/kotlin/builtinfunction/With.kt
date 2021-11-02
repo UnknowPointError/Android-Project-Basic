@@ -16,6 +16,7 @@ class With {
         println(with(str, {
             println("lambda Run,I will return the value of the last line")
             this
+
         }))
     }
 }

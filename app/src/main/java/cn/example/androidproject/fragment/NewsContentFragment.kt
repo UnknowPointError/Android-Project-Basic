@@ -20,17 +20,13 @@ import cn.example.androidproject.databinding.NewsContentFragBinding
  * @Description:
  **************************/
 class NewsContentFragment : Fragment() {
-    companion object {
-        @JvmStatic
-        private lateinit var mBinding: NewsContentFragBinding
+    private lateinit var mBinding: NewsContentFragBinding
 
-        @JvmStatic
-        fun refresh(title: String, content: String) {
-            mBinding.apply {
-                contentLayout.visibility = View.VISIBLE
-                newsTitle.text = title
-                newsContent.text = content
-            }
+    fun refresh(title: String, content: String) {
+        mBinding.apply {
+            contentLayout.visibility = View.VISIBLE
+            newsTitle.text = title
+            newsContent.text = content
         }
     }
 

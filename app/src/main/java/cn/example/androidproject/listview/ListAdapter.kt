@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import cn.example.androidproject.R
 import cn.example.androidproject.databinding.FruitBinding
 
 /*************************
@@ -35,7 +36,8 @@ class ListAdapter(activity: Activity, resId: Int, private val fruitList: List<Fr
         val view: View
         val viewHolder: ViewHolder
         if (convertView == null) {
-            mBinding = FruitBinding.inflate(LayoutInflater.from(context))
+            mBinding = FruitBinding.bind(LayoutInflater.from(context)
+                .inflate(R.layout.fruit, parent, false))
             view = mBinding.root
             viewHolder = ViewHolder(mBinding.fruitImage, mBinding.fruitText)
             view.tag = viewHolder

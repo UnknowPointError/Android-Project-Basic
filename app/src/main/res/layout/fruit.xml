@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:foreground="?android:attr/selectableItemBackground"
     android:layout_height="40dp">
 
     <ImageView
         android:id="@+id/fruitImage"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignParentStart="true"
+        android:layout_gravity="left"
         android:src="@drawable/apple_pic"/>
 
     <TextView
         android:id="@+id/fruitText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/fruitImage"
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
         android:textColor="@color/purple_200"
@@ -25,4 +22,4 @@
         android:textStyle="bold"
         android:text="2313"/>
 
-</RelativeLayout>
+</LinearLayout>

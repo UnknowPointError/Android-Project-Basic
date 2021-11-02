@@ -2,9 +2,12 @@ package cn.example.androidproject.fragment
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import cn.example.androidproject.R
 import cn.example.androidproject.databinding.NewsItemBinding
 
 /*************************
@@ -30,7 +33,9 @@ class NewsAdapter(private val newsList: List<News>, private val isTwoPane: Boole
         holder.itemView.setOnClickListener {
             val news = newsList[holder.adapterPosition]
             if (isTwoPane) {
-                NewsContentFragment.refresh(news.title,news.content)
+                val fragment =
+                    mBinding.root.findViewById<View>(R.id.newsContentFrag) as NewsContentFragment
+                fragment.refresh(news.title, news.content)
             } else {
                 NewsContentActivity.actionStart(parent.context, news.title, news.content)
             }

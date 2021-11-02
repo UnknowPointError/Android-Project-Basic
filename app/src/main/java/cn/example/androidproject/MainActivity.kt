@@ -3,7 +3,10 @@ package cn.example.androidproject
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import cn.example.androidproject.Util.typename
 import cn.example.androidproject.basic.BasicActivity
 import cn.example.androidproject.databinding.ActivityMainBinding
 import cn.example.androidproject.fragment.NewsActivity
@@ -18,6 +21,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        Log.d("eee", "${LayoutInflater.from(this@MainActivity).typename()}")
         initComponent()
     }
 

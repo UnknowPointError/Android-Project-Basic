@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import cn.example.androidproject.R
 import cn.example.androidproject.Util
 import cn.example.androidproject.databinding.FruitBinding
 import cn.example.androidproject.listview.Fruit
@@ -19,7 +20,7 @@ import cn.example.androidproject.listview.Fruit
  **************************/
 class RecyclerAdapter(
     private val fruitList: List<Fruit>,
-    private val itemClick: (Fruit) -> Unit
+    private val itemClick: (Fruit) -> Unit,
 ) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
 
@@ -44,7 +45,8 @@ class RecyclerAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val mBinding = FruitBinding.inflate(LayoutInflater.from(parent.context))
+        val mBinding = FruitBinding.bind(LayoutInflater.from(parent.context)
+            .inflate(R.layout.fruit, parent, false))
         val holder = ViewHolder(mBinding)
         holder.view.setOnClickListener { itemClick(fruitList[holder.adapterPosition]) }
         return holder
