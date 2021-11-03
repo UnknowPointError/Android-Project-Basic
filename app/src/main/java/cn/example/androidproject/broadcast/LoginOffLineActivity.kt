@@ -11,7 +11,7 @@ class LoginOffLineActivity : AppCompatActivity() {
 
 
     private val mBinding by lazy { LoginofflineActivityBinding.inflate(layoutInflater) }
-    private lateinit var receiver: LoginForceOffLine
+    private val receiver by lazy { LoginForceOffLine() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,8 +19,7 @@ class LoginOffLineActivity : AppCompatActivity() {
         LoginActivityCollector.addActivity(this)
         mBinding.offLine.setOnClickListener {
             val intent = Intent("OFFLINE")
-            intent.setPackage(packageName)
-            Log.e("eee", "$packageName")
+            intent.setPackage(packageName) // Error,I don't know why?
             sendBroadcast(intent)
         }
     }
@@ -28,13 +27,14 @@ class LoginOffLineActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val intentFilter = IntentFilter()
+        Log.e("eee","onResume")
         intentFilter.addAction("OFFLINE")
-        receiver = LoginForceOffLine()
         registerReceiver(receiver, intentFilter)
     }
 
     override fun onPause() {
         super.onPause()
+        Log.e("eee","onPause")
         unregisterReceiver(receiver)
     }
 

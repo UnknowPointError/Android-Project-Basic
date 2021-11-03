@@ -19,6 +19,7 @@
             android:name=".broadcast.LoginActivity"
             android:exported="false" />
 
+        <!--这个是静态注册的广播：开机广播-->
         <receiver
             android:name=".broadcast.ToBootComplete"
             android:enabled="true"
@@ -27,6 +28,8 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <!--这个是静态注册的自定义广播-->
         <receiver
             android:name=".broadcast.MyBroadCast"
             android:enabled="true"
@@ -35,6 +38,8 @@
                 <action android:name="MyBroadCastReceive" />
             </intent-filter>
         </receiver>
+
+        <!--这个是静态注册的自定义广播-->
         <receiver
             android:name=".broadcast.MyAnotherBroadCast"
             android:enabled="true"
@@ -43,10 +48,12 @@
                 <action android:name="MyBroadCastReceive" />
             </intent-filter>
         </receiver>
+
         <receiver
             android:name=".broadcast.LoginForceOffLine"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true"
+            android:priority="2">
             <intent-filter>
                 <action android:name="OFFLINE" />
             </intent-filter>

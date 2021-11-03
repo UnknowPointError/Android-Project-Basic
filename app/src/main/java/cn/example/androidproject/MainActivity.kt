@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import cn.example.androidproject.basic.BasicActivity
 import cn.example.androidproject.Util.showToasts
@@ -39,12 +38,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+    private val dynamicBroadcastReceiver by lazy {
+        object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                when (intent?.action) {
+                    "DynamicAction" -> main.showToasts("Okay")
+                }
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
         initComponent()
-        timeChangeNotice()
+        registerBroadCast()
     }
 
     override fun onClick(v: View?) {
@@ -68,6 +76,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     sendOrderedBroadcast(intent, null)
                 }
                 loginBroadcast.id -> startActivity<LoginActivity> { }
+                sendDynamicBroad.id -> {
+                    val intent = Intent("DynamicAction")
+                    sendBroadcast(intent)
+                }
             }
         }
     }
@@ -75,13 +87,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(timeChangeReceiver)
+        unregisterReceiver(dynamicBroadcastReceiver)
     }
 
-    private fun timeChangeNotice() {
-        val intentFilter = IntentFilter()
-        intentFilter.addAction("android.intent.action.TIME_TICK")
-        intentFilter.addAction("android.intent.action.AIRPLANE_MODE")
-        registerReceiver(timeChangeReceiver, intentFilter)
+    private fun registerBroadCast() {
+        val intentFilterTime = IntentFilter()
+        val intentFilterDynamic = IntentFilter()
+        intentFilterTime.addAction("android.intent.action.TIME_TICK")
+        intentFilterTime.addAction("android.intent.action.AIRPLANE_MODE")
+        registerReceiver(timeChangeReceiver, intentFilterTime)
+        registerReceiver(dynamicBroadcastReceiver, intentFilterDynamic)
     }
 
     private fun initComponent() {
@@ -96,6 +111,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             checkMemory.setOnClickListener(main)
             sendBroadCast.setOnClickListener(main)
             loginBroadcast.setOnClickListener(main)
+            sendDynamicBroad.setOnClickListener(main)
         }
     }
 

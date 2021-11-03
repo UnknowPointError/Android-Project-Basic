@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AlertDialog
+import cn.example.androidproject.MainActivity
 
 /*************************
  * @ProjectName: Android Project
@@ -23,10 +24,10 @@ class LoginForceOffLine : BroadcastReceiver() {
             setCancelable(false)
             setPositiveButton("OK") { _, _ ->
                 LoginActivityCollector.finishAll()
-                context.startActivity(Intent(context, LoginActivity::class.java))
+                context.startActivity(Intent(context,
+                    LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
             }
             show()
         }
     }
-
 }
