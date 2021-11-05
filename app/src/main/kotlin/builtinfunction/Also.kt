@@ -1,6 +1,6 @@
 package builtinfunction
 
-import cn.example.androidproject.Util.typename
+import cn.example.androidProject.Util.typename
 
 /*************************
  * @ProjectName: Android Project

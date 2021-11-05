@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <fragment
         android:id="@+id/newsContentFrag"
-        android:name="cn.example.androidproject.fragment.NewsContentFragment"
+        android:name="cn.example.androidProject.fragment.NewsContentFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -1,6 +1,6 @@
 package builtinfunction
 
-import cn.example.androidproject.Util.typename
+import cn.example.androidProject.Util.typename
 
 /*************************
  * @ProjectName: Android Project
@@ -21,7 +21,7 @@ class Let {
             println("(3)I can do many things")
             println("(4)I can do many things")
         }.let {
-            println("(5)I will return a Boolean type")
+            println("(5)I will return a Boolean type,return last line")
             true
         }
         println("(7)i = $i\ti type is ${i.typename()}")

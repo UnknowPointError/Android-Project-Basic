@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="cn.example.androidproject">
+    package="cn.example.androidProject">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -13,13 +15,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProject">
         <activity
+            android:name=".contentProvider.DataBaseProviderActivity"
+            android:exported="false" />
+
+        <provider
+            android:name=".contentProvider.DataBaseProvider"
+            android:authorities="cn.example.androidProject.provider"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".contentProvider.getContacts.ContactsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".storage.sqLite.DatabaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".storage.sharedPreferences.SharedPreferencesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".storage.filePersistence.FileActivity"
+            android:exported="false" />
+        <activity
             android:name=".broadcast.LoginOffLineActivity"
             android:exported="false" />
         <activity
             android:name=".broadcast.LoginActivity"
-            android:exported="false" />
-
-        <!--这个是静态注册的广播：开机广播-->
+            android:exported="false" /> <!-- 这个是静态注册的广播：开机广播 -->
         <receiver
             android:name=".broadcast.ToBootComplete"
             android:enabled="true"
@@ -27,9 +49,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
-        </receiver>
-
-        <!--这个是静态注册的自定义广播-->
+        </receiver> <!-- 这个是静态注册的自定义广播 -->
         <receiver
             android:name=".broadcast.MyBroadCast"
             android:enabled="true"
@@ -37,9 +57,7 @@
             <intent-filter>
                 <action android:name="MyBroadCastReceive" />
             </intent-filter>
-        </receiver>
-
-        <!--这个是静态注册的自定义广播-->
+        </receiver> <!-- 这个是静态注册的自定义广播 -->
         <receiver
             android:name=".broadcast.MyAnotherBroadCast"
             android:enabled="true"
@@ -49,27 +67,17 @@
             </intent-filter>
         </receiver>
 
-        <receiver
-            android:name=".broadcast.LoginForceOffLine"
-            android:enabled="true"
-            android:exported="true"
-            android:priority="2">
-            <intent-filter>
-                <action android:name="OFFLINE" />
-            </intent-filter>
-        </receiver>
-
         <activity
             android:name=".fragment.NewsActivity"
             android:exported="false" />
         <activity
-            android:name=".recyclertalk.TalkActivity"
+            android:name=".recyclerTalk.TalkActivity"
             android:exported="false" />
         <activity
-            android:name=".recyclerview.RecyclerActivity"
+            android:name=".recyclerView.RecyclerActivity"
             android:exported="false" />
         <activity
-            android:name=".listview.ListActivity"
+            android:name=".listView.ListActivity"
             android:exported="false" />
         <activity
             android:name=".basic.BasicActivity"

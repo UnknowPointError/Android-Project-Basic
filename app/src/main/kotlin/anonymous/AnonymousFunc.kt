@@ -1,8 +1,6 @@
 package anonymous
 
-import cn.example.androidproject.Util
-import cn.example.androidproject.Util.typename
-import java.lang.reflect.Type
+import cn.example.androidProject.Util.typename
 
 /*************************
  * @Name: Android Project

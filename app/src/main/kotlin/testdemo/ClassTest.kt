@@ -18,6 +18,14 @@ open class ClassTest {
         println("1111")
     }
 
+    fun testa() {
+        println(mutableListOf(1, 2, 3))
+        val li: MutableList<Any> = mutableListOf()
+        li.add(1)
+        li.add(2)
+        li.add(3)
+        println(li)
+    }
 }
 
 fun main() {
@@ -31,6 +39,8 @@ fun main() {
 
     val lista = listOf(1, 2, 3, 4)
     val listb = listOf("a", "b", "c", "d")
-    println(lista.map { listOf(it + 1 ) })
+    println(lista.map { listOf(it + 1) })
     println(lista.flatMap { listOf(it) })
+    ClassTest().testa()
+    println("content://cn.example.androidProject.provider/book/\$it")
 }

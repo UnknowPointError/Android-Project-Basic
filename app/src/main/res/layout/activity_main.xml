@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:background="@drawable/a1"
-    tools:context=".MainActivity"
-    android:baselineAligned="false">
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -21,7 +21,7 @@
             android:layout_gravity="center_horizontal"
             android:text="Basic"
             android:textAllCaps="false"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <Button
@@ -31,7 +31,7 @@
             android:layout_gravity="center_horizontal"
             android:text="RecyclerView Linear"
             android:textAllCaps="false"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <Button
@@ -41,7 +41,7 @@
             android:layout_gravity="center_horizontal"
             android:text="RecyclerView Grid"
             android:textAllCaps="false"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <Button
@@ -51,7 +51,7 @@
             android:layout_gravity="center_horizontal"
             android:text="News"
             android:textAllCaps="false"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <Button
@@ -61,14 +61,44 @@
             android:layout_gravity="center_horizontal"
             android:text="LoginBroadCast"
             android:textAllCaps="false"
-            android:textSize="15sp"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/fileStorage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="File Storage"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/sharedPreferences"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Shared Preferences"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/sqLite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="SQ Lite Database"
+            android:textAllCaps="false"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -80,7 +110,7 @@
             android:layout_gravity="center_horizontal"
             android:text="Basic ListView"
             android:textAllCaps="false"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <Button
@@ -90,7 +120,7 @@
             android:layout_gravity="center_horizontal"
             android:text="ListView"
             android:textAllCaps="false"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <Button
@@ -100,7 +130,7 @@
             android:layout_gravity="center_horizontal"
             android:text="Talk"
             android:textAllCaps="false"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <Button
@@ -110,17 +140,17 @@
             android:layout_gravity="center_horizontal"
             android:text="CheckMemory"
             android:textAllCaps="false"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/sendBroadCast"
+            android:id="@+id/sendStaticBroadCast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="SendBroadCast"
+            android:text="Send StaticBroadCast"
             android:textAllCaps="false"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <Button
@@ -130,9 +160,38 @@
             android:layout_gravity="center_horizontal"
             android:text="Send DynamicBroadCast"
             android:textAllCaps="false"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/makeCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Make Call"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/getContacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Get Contacts"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/contentProvider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Content Provider"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
