@@ -88,10 +88,9 @@ class DataBaseProviderActivity : AppCompatActivity() {
 
     private fun delete() {
         bookId?.let {
-            val uri = Uri.parse("content://cn.example.androidProject.provider/book/48")
-
-            this.showToasts("${contentResolver.delete(uri, null, null)}")
-//            query()
+            val uri = Uri.parse("$uriContent/$it")
+            contentResolver.delete(uri,null,null)
+            query()
             recyclerUpdate()
         }
     }
@@ -100,9 +99,9 @@ class DataBaseProviderActivity : AppCompatActivity() {
     private fun deleteAll() {
         val uri = Uri.parse(uriContent)
         contentResolver.delete(uri, null, null)
-        this.showToasts("${contentResolver.delete(uri, null, null)}")
         dataBase.clear()
-//        query()
+        query()
         recyclerUpdate()
     }
 }
+

@@ -1,16 +1,23 @@
 package cn.example.androidProject
 
 import android.app.ActivityManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationChannelCompat
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import cn.example.androidProject.basic.BasicActivity
 import cn.example.androidProject.Util.showToasts
@@ -20,6 +27,8 @@ import cn.example.androidProject.contentProvider.getContacts.ContactsActivity
 import cn.example.androidProject.databinding.ActivityMainBinding
 import cn.example.androidProject.fragment.NewsActivity
 import cn.example.androidProject.listView.ListActivity
+import cn.example.androidProject.media.MediaActivity
+import cn.example.androidProject.notification.NoticeActivity
 import cn.example.androidProject.recyclerTalk.TalkActivity
 import cn.example.androidProject.recyclerView.RecyclerActivity
 import cn.example.androidProject.storage.filePersistence.FileActivity
@@ -62,12 +71,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
-
+    private val manager by lazy { getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
         initComponent()
         registerBroadCast()
+        initNotice()
+
     }
 
 
@@ -102,6 +113,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 makeCall.id -> makeCall()
                 getContacts.id -> startActivity<ContactsActivity> { }
                 contentProvider.id -> startActivity<DataBaseProviderActivity> { }
+                sendNotice.id -> notice()
+                media.id -> startActivity<MediaActivity> {  }
             }
         }
     }
@@ -183,6 +196,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             makeCall.setOnClickListener(main)
             getContacts.setOnClickListener(main)
             contentProvider.setOnClickListener(main)
+            sendNotice.setOnClickListener(main)
+            media.setOnClickListener(main)
         }
     }
 
@@ -199,6 +214,46 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val longMemory: Long = info.availMem / 1024 / 1024
         val totalMemory: Long = info.totalMem / 1024 / 1024
         main.showToasts("【$text】\n可使用的内存为：$longMemory MB\n总内存为：$totalMemory MB")
+    }
+
+    private fun initNotice() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel1 =
+                NotificationChannel("1", "Normal", NotificationManager.IMPORTANCE_DEFAULT)
+            manager.createNotificationChannel(channel1)
+            val channel2 =
+                NotificationChannel("2", "Important", NotificationManager.IMPORTANCE_HIGH)
+            manager.createNotificationChannel(channel2)
+        }
+
+    }
+
+    private fun notice() {
+        val pi = PendingIntent.getActivity(this, 0, Intent(this, NoticeActivity::class.java), 0)
+        val notification1 = NotificationCompat.Builder(this, "1")
+            .setContentTitle("This is content title")
+            .setStyle(NotificationCompat.BigTextStyle().bigText("""private fun initNotice() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel("1", "name", NotificationManager.IMPORTANCE_DEFAULT)
+            manager.createNotificationChannel(channel)
+
+        }"""))
+            .setStyle(NotificationCompat.BigPictureStyle()
+                .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.a3)))
+            .setSmallIcon(R.drawable.apple_pic)
+            .setContentIntent(pi)
+            .setAutoCancel(true)
+            .build()
+        val notification2 = NotificationCompat.Builder(this, "2")
+            .setContentTitle("This is content title")
+            .setContentText("This is content text")
+            .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.banana_pic))
+            .setSmallIcon(R.drawable.apple_pic)
+            .setContentIntent(pi)
+            .setAutoCancel(true)
+            .build()
+        manager.notify(1, notification1)
+        manager.notify(2, notification2)
     }
 }
 

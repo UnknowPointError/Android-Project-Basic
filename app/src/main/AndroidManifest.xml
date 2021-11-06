@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProject">
         <activity
+            android:name=".media.MediaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".notification.NoticeActivity"
+            android:exported="false" />
+        <activity
             android:name=".contentProvider.DataBaseProviderActivity"
             android:exported="false" />
 
