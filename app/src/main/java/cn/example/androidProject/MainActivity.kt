@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat
 import cn.example.androidProject.basic.BasicActivity
 import cn.example.androidProject.Util.showToasts
 import cn.example.androidProject.broadcast.LoginActivity
+import cn.example.androidProject.cameraAlbum.CameraAlbumActivity
 import cn.example.androidProject.contentProvider.DataBaseProviderActivity
 import cn.example.androidProject.contentProvider.getContacts.ContactsActivity
 import cn.example.androidProject.databinding.ActivityMainBinding
@@ -31,6 +32,7 @@ import cn.example.androidProject.media.MediaActivity
 import cn.example.androidProject.notification.NoticeActivity
 import cn.example.androidProject.recyclerTalk.TalkActivity
 import cn.example.androidProject.recyclerView.RecyclerActivity
+import cn.example.androidProject.service.ServiceActivity
 import cn.example.androidProject.storage.filePersistence.FileActivity
 import cn.example.androidProject.storage.sharedPreferences.SharedPreferencesActivity
 import cn.example.androidProject.storage.sqLite.DatabaseActivity
@@ -114,7 +116,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 getContacts.id -> startActivity<ContactsActivity> { }
                 contentProvider.id -> startActivity<DataBaseProviderActivity> { }
                 sendNotice.id -> notice()
-                media.id -> startActivity<MediaActivity> {  }
+                media.id -> startActivity<MediaActivity> { }
+                service.id -> startActivity<ServiceActivity> { }
+                cameraAlbum.id -> startActivity<CameraAlbumActivity> {  }
             }
         }
     }
@@ -175,31 +179,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         registerReceiver(dynamicBroadcastReceiver, intentFilterDynamic)
     }
 
-    private fun initComponent() {
-        mBinding.apply {
-            basicBtn.setOnClickListener(main)
-            basicListviewBtn.setOnClickListener(main)
-            listviewBtn.setOnClickListener(main)
-            recyclerViewGrid.setOnClickListener(main)
-            recyclerViewLinear.setOnClickListener(main)
-            talk.setOnClickListener(main)
-            news.setOnClickListener(main)
-            checkMemory.setOnClickListener(main)
-            sendStaticBroadCast.setOnClickListener(main)
-            loginBroadcast.setOnClickListener(main)
-            sendDynamicBroad.setOnClickListener(main)
-            sendDynamicBroad.autoLinkMask
-            sendStaticBroadCast.autoLinkMask
-            fileStorage.setOnClickListener(main)
-            sharedPreferences.setOnClickListener(main)
-            sqLite.setOnClickListener(main)
-            makeCall.setOnClickListener(main)
-            getContacts.setOnClickListener(main)
-            contentProvider.setOnClickListener(main)
-            sendNotice.setOnClickListener(main)
-            media.setOnClickListener(main)
-        }
-    }
 
     private inline fun <reified T> startActivity(block: Intent.() -> Unit) {
         val intent = Intent(this, T::class.java)
@@ -254,6 +233,35 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             .build()
         manager.notify(1, notification1)
         manager.notify(2, notification2)
+    }
+
+
+    private fun initComponent() {
+        mBinding.apply {
+            basicBtn.setOnClickListener(main)
+            basicListviewBtn.setOnClickListener(main)
+            listviewBtn.setOnClickListener(main)
+            recyclerViewGrid.setOnClickListener(main)
+            recyclerViewLinear.setOnClickListener(main)
+            talk.setOnClickListener(main)
+            news.setOnClickListener(main)
+            checkMemory.setOnClickListener(main)
+            sendStaticBroadCast.setOnClickListener(main)
+            loginBroadcast.setOnClickListener(main)
+            sendDynamicBroad.setOnClickListener(main)
+            sendDynamicBroad.autoLinkMask
+            sendStaticBroadCast.autoLinkMask
+            fileStorage.setOnClickListener(main)
+            sharedPreferences.setOnClickListener(main)
+            sqLite.setOnClickListener(main)
+            makeCall.setOnClickListener(main)
+            getContacts.setOnClickListener(main)
+            contentProvider.setOnClickListener(main)
+            sendNotice.setOnClickListener(main)
+            media.setOnClickListener(main)
+            service.setOnClickListener(main)
+            cameraAlbum.setOnClickListener(main)
+        }
     }
 }
 

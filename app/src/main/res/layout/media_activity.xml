@@ -6,6 +6,16 @@
     android:orientation="vertical"
     tools:context=".media.MediaActivity">
 
+    <TextView
+        android:id="@+id/mediaTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="音乐尚未加载"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <Button
         android:id="@+id/playMusic"
         android:layout_width="wrap_content"
@@ -29,11 +39,22 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/stopMusic"
+        android:id="@+id/conMusic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Stop Music"
+        android:text="Continue Play Music"
+        android:textAllCaps="false"
+        android:textColor="#E6D118"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/resetMusic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Reset Music"
         android:textAllCaps="false"
         android:textColor="#E6D118"
         android:textSize="15sp"

@@ -15,8 +15,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProject">
         <activity
-            android:name=".media.MediaActivity"
+            android:name=".cameraAlbum.CameraAlbumActivity"
             android:exported="false" />
+        <activity
+            android:name=".service.ServiceActivity"
+            android:exported="false" />
+
+        <service
+            android:name=".service.MyService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".media.MusicService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".media.MediaActivity"
+            android:exported="false"
+            android:launchMode="singleInstance" />
         <activity
             android:name=".notification.NoticeActivity"
             android:exported="false" />
@@ -29,6 +46,15 @@
             android:authorities="cn.example.androidProject.provider"
             android:enabled="true"
             android:exported="true" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="cn.example.androidProject.cameraAlbum"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <activity
             android:name=".contentProvider.getContacts.ContactsActivity"

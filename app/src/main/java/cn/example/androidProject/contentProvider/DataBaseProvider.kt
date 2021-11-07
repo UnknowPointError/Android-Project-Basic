@@ -4,6 +4,7 @@ import android.content.ContentProvider
 import android.content.ContentValues
 import android.content.UriMatcher
 import android.net.Uri
+import android.util.Log
 import cn.example.androidProject.storage.sqLite.DatabaseActivity.MyDatabaseHelper
 
 class DataBaseProvider : ContentProvider() {
@@ -24,12 +25,18 @@ class DataBaseProvider : ContentProvider() {
         matcher
     }
 
+    override fun onCreate() = context?.let {
+        dbHelper = MyDatabaseHelper(it, "BookStore.db", 2)
+        true
+    } ?: false
+
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?) =
         dbHelper?.let {
+            Log.e("eeee", "delete")
             val db = it.writableDatabase
             val uriDeleteRows = when (uriMatcher.match(uri)) {
                 bookDir -> db.delete("Book", selection, selectionArgs)
-                bookDir -> {
+                bookItem -> {
                     val bookId = uri.pathSegments[1]
                     db.delete("Book", "id = ?", arrayOf(bookId))
                 }
@@ -66,11 +73,6 @@ class DataBaseProvider : ContentProvider() {
         }
         uriReturn
     }
-
-    override fun onCreate() = context?.let {
-        dbHelper = MyDatabaseHelper(it, "BookStore.db", 2)
-        true
-    } ?: false
 
     override fun query(
         uri: Uri, projection: Array<String>?, selection: String?,
