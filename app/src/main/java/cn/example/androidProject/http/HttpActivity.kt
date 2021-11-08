@@ -70,6 +70,7 @@ class HttpActivity : AppCompatActivity() {
 
     private fun parseXMLWithPull(xmlData: String) {
         try {
+            val i = 0
             val factory = XmlPullParserFactory.newInstance()
             val xmlPullParser = factory.newPullParser()
             xmlPullParser.setInput(StringReader(xmlData))
