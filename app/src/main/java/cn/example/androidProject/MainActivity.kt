@@ -1,9 +1,6 @@
 package cn.example.androidProject
 
-import android.app.ActivityManager
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -16,9 +13,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import cn.example.androidProject.http.HttpActivity
 import cn.example.androidProject.basic.BasicActivity
 import cn.example.androidProject.Util.showToasts
 import cn.example.androidProject.broadcast.LoginActivity
@@ -37,7 +34,6 @@ import cn.example.androidProject.storage.filePersistence.FileActivity
 import cn.example.androidProject.storage.sharedPreferences.SharedPreferencesActivity
 import cn.example.androidProject.storage.sqLite.DatabaseActivity
 import kotlinx.coroutines.DelicateCoroutinesApi
-import java.util.jar.Manifest
 
 /*************************
  * @ClassName: MainActivity.kt
@@ -118,7 +114,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 sendNotice.id -> notice()
                 media.id -> startActivity<MediaActivity> { }
                 service.id -> startActivity<ServiceActivity> { }
-                cameraAlbum.id -> startActivity<CameraAlbumActivity> {  }
+                cameraAlbum.id -> startActivity<CameraAlbumActivity> { }
+                http.id -> startActivity<HttpActivity> {  }
             }
         }
     }
@@ -198,7 +195,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun initNotice() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel1 =
-                NotificationChannel("1", "Normal", NotificationManager.IMPORTANCE_DEFAULT)
+                NotificationChannel("1", "Normal", NotificationManager.IMPORTANCE_HIGH)
             manager.createNotificationChannel(channel1)
             val channel2 =
                 NotificationChannel("2", "Important", NotificationManager.IMPORTANCE_HIGH)
@@ -209,20 +206,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun notice() {
         val pi = PendingIntent.getActivity(this, 0, Intent(this, NoticeActivity::class.java), 0)
-        val notification1 = NotificationCompat.Builder(this, "1")
-            .setContentTitle("This is content title")
-            .setStyle(NotificationCompat.BigTextStyle().bigText("""private fun initNotice() {
+        val notification1 =
+            NotificationCompat.Builder(this, "1")
+                .setContentTitle("This is content title")
+                .setStyle(NotificationCompat.BigTextStyle().bigText("""private fun initNotice() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel("1", "name", NotificationManager.IMPORTANCE_DEFAULT)
             manager.createNotificationChannel(channel)
 
         }"""))
-            .setStyle(NotificationCompat.BigPictureStyle()
-                .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.a3)))
-            .setSmallIcon(R.drawable.apple_pic)
-            .setContentIntent(pi)
-            .setAutoCancel(true)
-            .build()
+                .setStyle(NotificationCompat.BigPictureStyle()
+                    .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.a3)))
+                .setSmallIcon(R.drawable.apple_pic)
+                .setContentIntent(pi)
+                .setAutoCancel(true)
+                .build()
         val notification2 = NotificationCompat.Builder(this, "2")
             .setContentTitle("This is content title")
             .setContentText("This is content text")
@@ -261,6 +259,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             media.setOnClickListener(main)
             service.setOnClickListener(main)
             cameraAlbum.setOnClickListener(main)
+            http.setOnClickListener(main)
         }
     }
 }

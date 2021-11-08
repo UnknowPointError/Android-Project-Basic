@@ -23,7 +23,6 @@
         android:layout_gravity="center_horizontal"
         android:text="Bind Service"
         android:textAllCaps="false"
-        android:textColor="#DCEA59"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -34,7 +33,7 @@
         android:layout_gravity="center_horizontal"
         android:text="Unbind Service"
         android:textAllCaps="false"
-        android:textColor="#DCEA59"
         android:textSize="15sp"
         android:textStyle="bold" />
+
 </LinearLayout>

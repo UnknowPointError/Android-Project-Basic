@@ -3,7 +3,7 @@ package cn.example.lib.reflex;
 public class Person {
 
     public String name;
-    private int age;
+    public int age;
 
     public Person() {
         System.out.println("non-parameter constructor");
@@ -24,6 +24,6 @@ public class Person {
     }
 
     public void introduce() {
-        System.out.println("My name is  : " + this.name + "age is : " + age);
+        System.out.println("My name is : " + this.name + "\nage is : " + age);
     }
 }

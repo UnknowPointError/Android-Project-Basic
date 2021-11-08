@@ -1,21 +1,24 @@
 package cn.example.androidProject.cameraAlbum
 
+import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Matrix
-import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.FileProvider
+import androidx.exifinterface.media.ExifInterface
 import cn.example.androidProject.databinding.CameraAlbumActivityBinding
 import java.io.File
 
 
-private const val TAKE_PHOTO = 1
-private const val AUTHORITY = "cn.example.androidProject.cameraAlbum"
+
 
 /*************************
  * @ClassName: CameraAlbumActivity.kt
@@ -26,13 +29,25 @@ private const val AUTHORITY = "cn.example.androidProject.cameraAlbum"
  * @Description:
  **************************/
 class CameraAlbumActivity : AppCompatActivity() {
-
+    companion object {
+        private const val AUTHORITY = "cn.example.androidProject.cameraAlbum"
+    }
     private val mBinding by lazy { CameraAlbumActivityBinding.inflate(layoutInflater) }
     private lateinit var imageUri: Uri
     private lateinit var outputImage: File
     private val camera = registerForActivityResult(ActivityResultContracts.TakePicturePreview()) {
-        Log.e("aaa","width = ${it.width}, height = ${it.height} ")
-        it?.let { mBinding.imageView.setImageBitmap(it) }
+        Log.e("aaa", "$imageUri")
+        it?.let {
+            val bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(imageUri))
+            mBinding.imageView.setImageBitmap(rotateIfRequired(bitmap))
+        }
+    }
+    private val camera1 = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        Log.e("aaa", "$imageUri")
+        it?.let {
+            val bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(imageUri))
+            mBinding.imageView.setImageBitmap(rotateIfRequired(bitmap))
+        }
     }
 
 
@@ -42,6 +57,8 @@ class CameraAlbumActivity : AppCompatActivity() {
         initComponent()
 
     }
+
+
 
     private fun initComponent() {
         mBinding.apply {
@@ -58,12 +75,14 @@ class CameraAlbumActivity : AppCompatActivity() {
         } else {
             Uri.fromFile(outputImage)
         }
-        camera.launch(null)
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri)
+        camera1.launch(intent)
     }
 
     private fun rotateIfRequired(bitmap: Bitmap): Bitmap {
         val exif = ExifInterface(outputImage.path)
-        return when (exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)) {
+        return when (exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+            ExifInterface.ORIENTATION_NORMAL)) {
             ExifInterface.ORIENTATION_ROTATE_90 -> rotateBitmap(bitmap, 90)
             ExifInterface.ORIENTATION_ROTATE_180 -> rotateBitmap(bitmap, 180)
             ExifInterface.ORIENTATION_ROTATE_270 -> rotateBitmap(bitmap, 270)
@@ -74,7 +93,9 @@ class CameraAlbumActivity : AppCompatActivity() {
     private fun rotateBitmap(bitmap: Bitmap, degree: Int): Bitmap {
         Matrix().apply {
             postRotate(degree.toFloat())
-            return Bitmap.createBitmap(bitmap, 0, 0, 500, 450 , this, true)
+            val rotateBitmap = Bitmap.createBitmap(bitmap, 0, 0, 500, 450, this, true)
+            bitmap.recycle()
+            return rotateBitmap
         }
     }
 }

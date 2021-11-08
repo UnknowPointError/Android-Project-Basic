@@ -16,6 +16,8 @@
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/database_recycler.xml" value="0.390625" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/file_activity.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/fruit.xml" value="0.6" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/http_activity.xml" value="0.2713541666666667" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/http_url_activity.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/layout.xml" value="0.13541666666666666" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/login_activity.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/loginoffline_activity.xml" value="0.22083333333333333" />
@@ -34,7 +36,9 @@
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/service_activity.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/storage_activity.xml" value="0.390625" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/talk_activity.xml" value="0.2518518518518518" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/test.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/ttes.xml" value="0.2713541666666667" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/web_view_activity.xml" value="0.2546875" />
       </map>
     </option>
   </component>

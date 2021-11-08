@@ -16,12 +16,14 @@ class ServiceActivity : AppCompatActivity() {
         var text: String = "未绑定服务"
     }
 
+
     lateinit var downloadBinder: MyService.DownloadBinder
+    private var bindingTAG = false
     private val mBinding by lazy { ServiceActivityBinding.inflate(layoutInflater) }
     private val connection = object : ServiceConnection {
         override fun onServiceConnected(componentName: ComponentName?, service: IBinder?) {
+            bindingTAG = true
             text = "已绑定服务"
-            Log.e("aaa", "执行")
             downloadBinder = service as MyService.DownloadBinder
             downloadBinder.startDownload()
             downloadBinder.getProgress()
@@ -47,8 +49,11 @@ class ServiceActivity : AppCompatActivity() {
                 bindService(intent, connection, Context.BIND_AUTO_CREATE)
             }
             unBindService.setOnClickListener {
-                unbindService(connection)
-                mBinding.serviceTextView.text = "取消绑定服务"
+                if (bindingTAG) {
+                    bindingTAG = false
+                    unbindService(connection)
+                    mBinding.serviceTextView.text = "取消绑定服务"
+                }
             }
         }
     }
