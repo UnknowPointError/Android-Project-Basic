@@ -38,9 +38,4 @@ class NewsContentFragment : Fragment() {
         mBinding = NewsContentFragBinding.inflate(inflater, container, false)
         return mBinding.root
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        System.gc()
-    }
 }

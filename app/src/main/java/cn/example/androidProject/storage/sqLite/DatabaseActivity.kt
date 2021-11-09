@@ -7,12 +7,14 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.example.androidProject.R
 import cn.example.androidProject.Util.RecyclerView
 import cn.example.androidProject.Util.showToasts
 import cn.example.androidProject.databinding.DatabaseActivityBinding
 
+@SuppressLint("Range")
 class DatabaseActivity : AppCompatActivity() {
 
 
@@ -155,10 +157,18 @@ class DatabaseActivity : AppCompatActivity() {
         }
     }
 
+
     private fun deleteLastData() {
         val db = dbHelper.writableDatabase
         db.beginTransaction()
         try {
+            val cursor = db.query("Book", arrayOf("id"), null, null, null, null, null)
+            cursor.apply {
+                if (this.count != 0) {
+                    val id = getLong(getColumnIndex(count.toString()))
+                    Log.e("eeee", "$id")
+                }
+            }
             val isDelete = db.delete("Book", "id < 0", null)
             if (isDelete != 0)
                 main.showToasts("Delete Last Data Successfully.")
@@ -190,7 +200,6 @@ class DatabaseActivity : AppCompatActivity() {
         db.endTransaction()
     }
 
-    @SuppressLint("Range")
     private fun queryData() {
         databaseData.clear()
         val db = dbHelper.writableDatabase
@@ -229,6 +238,5 @@ class DatabaseActivity : AppCompatActivity() {
         }
         db.endTransaction()
     }
-
 
 }

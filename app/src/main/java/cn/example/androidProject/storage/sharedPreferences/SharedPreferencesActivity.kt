@@ -4,9 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
-import androidx.core.view.size
-import cn.example.androidProject.Util.showToasts
 import cn.example.androidProject.databinding.StorageActivityBinding
 
 /*************************
@@ -38,7 +35,6 @@ class SharedPreferencesActivity : AppCompatActivity(), View.OnClickListener {
                         putInt("age", 17)
                         putBoolean("work", false)
                         apply()
-                        main.showToasts("${listView.scrollBarSize}")
                     }
                 }
                 readData.id -> {

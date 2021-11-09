@@ -1,6 +1,5 @@
 package cn.example.androidProject.recyclerView
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -45,7 +44,6 @@ class RecyclerAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val mBinding = FruitBinding.bind(LayoutInflater.from(parent.context)
             .inflate(R.layout.fruit, parent, false))
-        Log.e("eee", "$mBinding")
         val holder = ViewHolder(mBinding)
         holder.view.setOnClickListener { itemClick(fruitList[holder.adapterPosition]) }
         return holder

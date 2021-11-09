@@ -46,7 +46,6 @@ class ListActivity : AppCompatActivity() {
 
     private fun initComponent() {
         val value = intent.getStringExtra("listData")
-        showToast(this, "value = $value")
         if (value == "Basic") {
             mBinding.listview.adapter =
                 ArrayAdapter(this, android.R.layout.simple_list_item_1, data)
@@ -54,14 +53,12 @@ class ListActivity : AppCompatActivity() {
             /*val adapter = ListAdapter(this, R.layout.fruit, fruitData) {
                 Log.e("ListActivity", "fruit -> $it")
             }
-            此写法由大佬404编写*/
+            此写法由大佬404编写使用lambda高阶函数*/
             initFruit()
             val adapter = ListAdapter(this, R.layout.fruit, fruitData)
             mBinding.listview.adapter = adapter
         }
         mBinding.listview.setOnItemClickListener { parent, view, position, id ->
-            val strA = "\nParent is $parent\nView is $view\nPosition is $position\nID is $id"
-            Log.d(tag,strA)
             if (fruitData.isNotEmpty()) {
                 val str = "You click the ID is $id\n FruitName is ${fruitData[position].fruitName} "
                 showToast(this, text = str)

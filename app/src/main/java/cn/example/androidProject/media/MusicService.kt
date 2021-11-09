@@ -6,8 +6,6 @@ import android.content.res.AssetFileDescriptor
 import android.media.MediaPlayer
 import android.os.Binder
 import android.os.IBinder
-import android.os.Message
-import android.util.Log
 import android.widget.SeekBar
 import kotlin.concurrent.thread
 
