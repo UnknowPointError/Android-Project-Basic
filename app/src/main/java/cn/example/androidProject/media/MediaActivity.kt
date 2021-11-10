@@ -1,6 +1,5 @@
 package cn.example.androidProject.media
 
-import android.app.Service
 import android.content.*
 import android.media.MediaPlayer
 import android.os.*
@@ -8,9 +7,7 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import cn.example.androidProject.databinding.MediaActivityBinding
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
-import cn.example.androidProject.Util.showToasts
 
 
 class MediaActivity : AppCompatActivity() {

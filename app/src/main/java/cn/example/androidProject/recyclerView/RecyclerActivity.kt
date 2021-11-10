@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.example.androidProject.R
-import cn.example.androidProject.Util
+import cn.example.androidProject.util.Util
 import cn.example.androidProject.databinding.RecyclerActivityBinding
 import cn.example.androidProject.listView.Fruit
 

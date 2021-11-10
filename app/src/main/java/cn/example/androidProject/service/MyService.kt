@@ -10,11 +10,9 @@ import android.graphics.BitmapFactory
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import cn.example.androidProject.MainActivity
 import cn.example.androidProject.R
-import cn.example.androidProject.Util.showToasts
 
 class MyService : Service() {
 

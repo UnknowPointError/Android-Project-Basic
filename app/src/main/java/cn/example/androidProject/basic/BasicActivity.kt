@@ -7,7 +7,7 @@ import android.os.Looper
 import android.os.Message
 import android.view.View
 import cn.example.androidProject.R
-import cn.example.androidProject.Util
+import cn.example.androidProject.util.Util
 import cn.example.androidProject.databinding.BasicActiivtyBinding
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope

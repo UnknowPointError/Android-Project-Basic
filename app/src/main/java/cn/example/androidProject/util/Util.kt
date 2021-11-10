@@ -1,4 +1,4 @@
-package cn.example.androidProject
+package cn.example.androidProject.util
 
 import android.app.ActivityManager
 import android.content.Context
@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.google.android.material.snackbar.Snackbar
 
 /*************************
  * @Name: Android Project
@@ -151,7 +152,7 @@ object Util {
      **************************/
     fun isScreenChange(): Boolean {
         val mConfiguration by lazy {
-            this.resources.configuration //获取设置的配置信息
+            resources.configuration //获取设置的配置信息
         }
         val ori = mConfiguration.orientation //获取屏幕方向
         if (ori == Configuration.ORIENTATION_LANDSCAPE) {
@@ -195,6 +196,37 @@ object Util {
      * @DateTime: 2021/11/4 17:12
      **************************/
     fun Any.typename(): String = this::class.java.simpleName
+
+    fun View.showSnackbar(
+        text: String,
+        actionText: String? = null,
+        duration: Int = Snackbar.LENGTH_LONG,
+        block: (() -> Unit)? = null,
+    ) {
+        val snackbar = Snackbar.make(this, text, duration)
+        if (actionText != null && block != null) {
+            snackbar.setAction(actionText) {
+                block()
+            }
+        }
+        snackbar.show()
+    }
+
+
+    fun View.showSnackbar(
+        resId: Int,
+        actionResId: Int? = null,
+        duration: Int = Snackbar.LENGTH_LONG,
+        block: (() -> Unit)? = null,
+    ) {
+        val snackbar = Snackbar.make(this, resId, duration)
+        if (actionResId != null && block != null) {
+            snackbar.setAction(actionResId) {
+                block()
+            }
+        }
+        snackbar.show()
+    }
 }
 
 

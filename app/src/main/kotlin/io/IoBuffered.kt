@@ -1,6 +1,6 @@
 package io
 
-import cn.example.androidProject.Util.multiplication
+import cn.example.androidProject.util.Util.multiplication
 import java.io.*
 
 /*************************

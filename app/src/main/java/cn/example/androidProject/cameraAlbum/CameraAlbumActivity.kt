@@ -1,6 +1,5 @@
 package cn.example.androidProject.cameraAlbum
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -14,7 +13,7 @@ import android.provider.MediaStore
 import androidx.activity.result.contract.ActivityResultContracts as ResultContracts
 import androidx.core.content.FileProvider
 import androidx.exifinterface.media.ExifInterface
-import cn.example.androidProject.Util.showToasts
+import cn.example.androidProject.util.Util.showToasts
 import cn.example.androidProject.databinding.CameraAlbumActivityBinding
 import java.io.File
 
@@ -29,6 +28,25 @@ import java.io.File
  **************************/
 class CameraAlbumActivity : AppCompatActivity() {
 
+    inner class TakePicture : ResultContracts.TakePicturePreview() {
+        override fun createIntent(context: Context, input: Void?): Intent {
+            super.createIntent(context, input)
+            val intent = Intent("android.media.action.IMAGE_CAPTURE")
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+            return intent
+        }
+    }
+
+    inner class FromAlbum : ResultContracts.OpenDocument() {
+        override fun createIntent(context: Context, input: Array<out String>): Intent {
+            super.createIntent(context, input)
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+            intent.addCategory(Intent.CATEGORY_OPENABLE)
+            intent.type = "image/*"
+            return intent
+        }
+    }
+
     companion object {
         private const val AUTHORITY = "cn.example.androidProject.cameraAlbum"
     }
@@ -36,10 +54,18 @@ class CameraAlbumActivity : AppCompatActivity() {
     private lateinit var imageUri: Uri
     private lateinit var outputImage: File
     private val mBinding by lazy { CameraAlbumActivityBinding.inflate(layoutInflater) }
-    private val camera1 = registerForActivityResult(ResultContracts.StartActivityForResult()) {
-        if (it.resultCode == Activity.RESULT_OK) {
-            val bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(imageUri))
-            bitmap?.let { mBinding.imageView.setImageBitmap(rotateIfRequired(bitmap)) }
+    private val camera = registerForActivityResult(TakePicture()) {
+        val bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(imageUri))
+        bitmap?.let {
+            mBinding.imageView.setImageBitmap(rotateIfRequired(bitmap))
+            this.showToasts("拍摄的照片显示成功")
+        }
+    }
+    private val album = registerForActivityResult(FromAlbum()) {
+        val bitmap = getBitmapFromUri(it)
+        bitmap?.let {
+            mBinding.imageView.setImageBitmap(bitmap)
+            this.showToasts("从图库选取的图片显示成功")
         }
     }
 
@@ -52,24 +78,12 @@ class CameraAlbumActivity : AppCompatActivity() {
     private fun initComponent() {
         mBinding.apply {
             takePhoto.setOnClickListener { takePhotos() }
+            fromAlbum.setOnClickListener { album.launch(arrayOf<String>()) }
         }
     }
 
-    private val camera = registerForActivityResult(TakePicture()) {
-        val bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(imageUri))
-        bitmap?.let {
-            mBinding.imageView.setImageBitmap(rotateIfRequired(bitmap))
-            this.showToasts("拍摄的照片显示成功")
-        }
-    }
-
-    inner class TakePicture : ResultContracts.TakePicturePreview() {
-        override fun createIntent(context: Context, input: Void?): Intent {
-            super.createIntent(context, input)
-            val intent = Intent("android.media.action.IMAGE_CAPTURE")
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
-            return intent
-        }
+    private fun getBitmapFromUri(uri: Uri) = contentResolver.openFileDescriptor(uri, "r")?.use {
+        BitmapFactory.decodeFileDescriptor(it.fileDescriptor)
     }
 
     private fun takePhotos() {

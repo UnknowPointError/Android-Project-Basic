@@ -17,14 +17,21 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import cn.example.androidProject.http.HttpActivity
 import cn.example.androidProject.basic.BasicActivity
-import cn.example.androidProject.Util.showToasts
+import cn.example.androidProject.util.Util.showToasts
 import cn.example.androidProject.broadcast.LoginActivity
 import cn.example.androidProject.cameraAlbum.CameraAlbumActivity
 import cn.example.androidProject.contentProvider.DataBaseProviderActivity
 import cn.example.androidProject.contentProvider.getContacts.ContactsActivity
 import cn.example.androidProject.databinding.ActivityMainBinding
+import cn.example.androidProject.databinding.MaterialCardviewActivityBinding
 import cn.example.androidProject.fragment.NewsActivity
 import cn.example.androidProject.listView.ListActivity
+import cn.example.androidProject.materialDesign.cardView.CardViewActivity
+import cn.example.androidProject.materialDesign.collapsingToolBarLayout.CollapsingToolBarActivity
+import cn.example.androidProject.materialDesign.drawerLayout.DrawerLayoutActivity
+import cn.example.androidProject.materialDesign.floatingActionButton.FloatingActionButtonActivity
+import cn.example.androidProject.materialDesign.navigationView.NavigationViewActivity
+import cn.example.androidProject.materialDesign.toolBar.ToolBarActivity
 import cn.example.androidProject.media.MediaActivity
 import cn.example.androidProject.notification.NoticeActivity
 import cn.example.androidProject.recyclerTalk.TalkActivity
@@ -33,6 +40,7 @@ import cn.example.androidProject.service.ServiceActivity
 import cn.example.androidProject.storage.filePersistence.FileActivity
 import cn.example.androidProject.storage.sharedPreferences.SharedPreferencesActivity
 import cn.example.androidProject.storage.sqLite.DatabaseActivity
+import com.google.android.material.card.MaterialCardView
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 /*************************
@@ -70,15 +78,33 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
     private val manager by lazy { getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
         initComponent()
         registerBroadCast()
         initNotice()
-
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(timeChangeReceiver)
+        unregisterReceiver(dynamicBroadcastReceiver)
+    }
+
+    override fun onRequestPermissionsResult(rCode: Int, perm: Array<out String>, grant: IntArray) {
+        super.onRequestPermissionsResult(rCode, perm, grant)
+        when (rCode) {
+            1 -> {
+                if (grant.isNotEmpty() && grant[0] == PackageManager.PERMISSION_GRANTED) {
+                    callPhone()
+                } else {
+                    main.showToasts("You denied the Permission.")
+                }
+            }
+        }
+    }
 
     override fun onClick(v: View?) {
         mBinding.apply {
@@ -115,81 +141,50 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 media.id -> startActivity<MediaActivity> { }
                 service.id -> startActivity<ServiceActivity> { }
                 cameraAlbum.id -> startActivity<CameraAlbumActivity> { }
-                http.id -> startActivity<HttpActivity> {  }
+                http.id -> startActivity<HttpActivity> { }
+                toolBar.id -> startActivity<ToolBarActivity> { }
+                drawerLayout.id -> startActivity<DrawerLayoutActivity> { }
+                navigationView.id -> startActivity<NavigationViewActivity> { }
+                floatingActionButton.id -> startActivity<FloatingActionButtonActivity> { }
+                cardView.id -> startActivity<CardViewActivity> {  }
+                collapsingToolbar.id -> startActivity<CollapsingToolBarActivity> {  }
             }
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        unregisterReceiver(timeChangeReceiver)
-        unregisterReceiver(dynamicBroadcastReceiver)
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray,
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            1 -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    callPhone()
-                } else {
-                    main.showToasts("You denied the Permission.")
-                }
-            }
+    private fun initComponent() {
+        mBinding.apply {
+            basicBtn.setOnClickListener(main)
+            basicListviewBtn.setOnClickListener(main)
+            listviewBtn.setOnClickListener(main)
+            recyclerViewGrid.setOnClickListener(main)
+            recyclerViewLinear.setOnClickListener(main)
+            talk.setOnClickListener(main)
+            news.setOnClickListener(main)
+            checkMemory.setOnClickListener(main)
+            sendStaticBroadCast.setOnClickListener(main)
+            loginBroadcast.setOnClickListener(main)
+            sendDynamicBroad.setOnClickListener(main)
+            sendDynamicBroad.autoLinkMask
+            sendStaticBroadCast.autoLinkMask
+            fileStorage.setOnClickListener(main)
+            sharedPreferences.setOnClickListener(main)
+            sqLite.setOnClickListener(main)
+            makeCall.setOnClickListener(main)
+            getContacts.setOnClickListener(main)
+            contentProvider.setOnClickListener(main)
+            sendNotice.setOnClickListener(main)
+            media.setOnClickListener(main)
+            service.setOnClickListener(main)
+            cameraAlbum.setOnClickListener(main)
+            http.setOnClickListener(main)
+            toolBar.setOnClickListener(main)
+            drawerLayout.setOnClickListener(main)
+            navigationView.setOnClickListener(main)
+            floatingActionButton.setOnClickListener(main)
+            cardView.setOnClickListener(main)
+            collapsingToolbar.setOnClickListener(main)
         }
-    }
-
-    private fun makeCall() {
-        if (ContextCompat.checkSelfPermission(main,
-                android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(main,
-                arrayOf(android.Manifest.permission.CALL_PHONE),
-                1)
-        } else {
-            callPhone()
-        }
-    }
-
-    private fun callPhone() {
-        try {
-            val intent = Intent(Intent.ACTION_CALL)
-            intent.data = Uri.parse("tel:10086")
-            startActivity(intent)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    private fun registerBroadCast() {
-        // timeChangeReceive是系统发出广播我只需接收即可
-        val intentFilterTime = IntentFilter()
-        val intentFilterDynamic = IntentFilter()
-        intentFilterTime.addAction("android.intent.action.TIME_TICK")
-        intentFilterTime.addAction("android.intent.action.AIRPLANE_MODE")
-        intentFilterDynamic.addAction("DynamicAction")
-        registerReceiver(timeChangeReceiver, intentFilterTime)
-        registerReceiver(dynamicBroadcastReceiver, intentFilterDynamic)
-    }
-
-
-    private inline fun <reified T> startActivity(block: Intent.() -> Unit) {
-        val intent = Intent(this, T::class.java)
-        intent.block()
-        this.startActivity(intent)
-    }
-
-    private fun checkMemory(text: String = "检查内存") {
-        val manager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val info = ActivityManager.MemoryInfo()
-        manager.getMemoryInfo(info)
-        val longMemory: Long = info.availMem / 1024 / 1024
-        val totalMemory: Long = info.totalMem / 1024 / 1024
-        main.showToasts("【$text】\n可使用的内存为：$longMemory MB\n总内存为：$totalMemory MB")
     }
 
     private fun initNotice() {
@@ -233,34 +228,52 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         manager.notify(2, notification2)
     }
 
+    private fun checkMemory(text: String = "检查内存") {
+        val manager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val info = ActivityManager.MemoryInfo()
+        manager.getMemoryInfo(info)
+        val longMemory: Long = info.availMem / 1024 / 1024
+        val totalMemory: Long = info.totalMem / 1024 / 1024
+        main.showToasts("【$text】\n可使用的内存为：$longMemory MB\n总内存为：$totalMemory MB")
+    }
 
-    private fun initComponent() {
-        mBinding.apply {
-            basicBtn.setOnClickListener(main)
-            basicListviewBtn.setOnClickListener(main)
-            listviewBtn.setOnClickListener(main)
-            recyclerViewGrid.setOnClickListener(main)
-            recyclerViewLinear.setOnClickListener(main)
-            talk.setOnClickListener(main)
-            news.setOnClickListener(main)
-            checkMemory.setOnClickListener(main)
-            sendStaticBroadCast.setOnClickListener(main)
-            loginBroadcast.setOnClickListener(main)
-            sendDynamicBroad.setOnClickListener(main)
-            sendDynamicBroad.autoLinkMask
-            sendStaticBroadCast.autoLinkMask
-            fileStorage.setOnClickListener(main)
-            sharedPreferences.setOnClickListener(main)
-            sqLite.setOnClickListener(main)
-            makeCall.setOnClickListener(main)
-            getContacts.setOnClickListener(main)
-            contentProvider.setOnClickListener(main)
-            sendNotice.setOnClickListener(main)
-            media.setOnClickListener(main)
-            service.setOnClickListener(main)
-            cameraAlbum.setOnClickListener(main)
-            http.setOnClickListener(main)
+    private fun makeCall() {
+        if (ContextCompat.checkSelfPermission(main,
+                android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(main,
+                arrayOf(android.Manifest.permission.CALL_PHONE),
+                1)
+        } else {
+            callPhone()
         }
+    }
+
+    private fun callPhone() {
+        try {
+            val intent = Intent(Intent.ACTION_CALL)
+            intent.data = Uri.parse("tel:10086")
+            startActivity(intent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun registerBroadCast() {
+        // timeChangeReceive是系统发出广播我只需接收即可
+        val intentFilterTime = IntentFilter()
+        val intentFilterDynamic = IntentFilter()
+        intentFilterTime.addAction("android.intent.action.TIME_TICK")
+        intentFilterTime.addAction("android.intent.action.AIRPLANE_MODE")
+        intentFilterDynamic.addAction("DynamicAction")
+        registerReceiver(timeChangeReceiver, intentFilterTime)
+        registerReceiver(dynamicBroadcastReceiver, intentFilterDynamic)
+    }
+
+    private inline fun <reified T> startActivity(block: Intent.() -> Unit) {
+        val intent = Intent(this, T::class.java)
+        intent.block()
+        this.startActivity(intent)
     }
 }
 

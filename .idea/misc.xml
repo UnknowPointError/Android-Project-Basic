@@ -8,7 +8,7 @@
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout-sw600dp/new_content_600.xml" value="0.203515625" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout-sw600dp/new_content_600s.xml" value="0.1015625" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout-sw600dp/news_activity.xml" value="0.29296875" />
-        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/activity_main.xml" value="0.328125" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/activity_main.xml" value="0.3177083333333333" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/camera_album_activity.xml" value="0.3" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/contacts_activity.xml" value="0.390625" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/data_base_provider_activity.xml" value="0.390625" />
@@ -16,14 +16,22 @@
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/database_recycler.xml" value="0.390625" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/file_activity.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/fruit.xml" value="0.6" />
-        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/http_activity.xml" value="0.4" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/http_activity.xml" value="0.18518518518518517" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/http_url_activity.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/layout.xml" value="0.13541666666666666" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/login_activity.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/loginoffline_activity.xml" value="0.22083333333333333" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/material_cardview_activity.xml" value="0.2713541666666667" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/material_collapsing_activity.xml" value="0.264" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/material_drawerlayout_activity.xml" value="0.2" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/material_floatingbutton_activity.xml" value="0.2713541666666667" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/material_navigationview_activity.xml" value="0.2713541666666667" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/material_recyclerview_item.xml" value="0.2713541666666667" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/material_toolbar_activity.xml" value="0.264" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/media_activity.xml" value="0.390625" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/msg_left.xml" value="0.3830439223697651" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/msg_right.xml" value="0.264" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/navigation_view_header.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/news_activity.xml" value="0.2" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/news_content_600.xml" value="0.13541666666666666" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/news_content_activity.xml" value="0.1" />
@@ -39,6 +47,8 @@
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/test.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/ttes.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/web_view_activity.xml" value="0.2546875" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/menu/nav_menu.xml" value="0.2713541666666667" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/menu/toolbar.xml" value="0.2713541666666667" />
       </map>
     </option>
   </component>

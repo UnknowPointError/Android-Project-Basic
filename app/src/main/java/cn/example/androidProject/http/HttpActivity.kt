@@ -4,8 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import cn.example.androidProject.Util.showToasts
+import cn.example.androidProject.MainActivity
+import cn.example.androidProject.util.Util.showToasts
 import cn.example.androidProject.databinding.HttpActivityBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
@@ -14,10 +17,16 @@ import org.xml.sax.InputSource
 import org.xml.sax.helpers.DefaultHandler
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.io.StringReader
 import java.lang.StringBuilder
+import java.lang.reflect.Type
 import java.net.HttpURLConnection
 import java.net.URL
 import javax.xml.parsers.SAXParserFactory
@@ -83,9 +92,12 @@ class HttpActivity : AppCompatActivity() {
         }
     }
 
+    inner class App(val id: String, val name: String, val version: String)
+
     companion object {
         private const val HTTP_XML_DATA = "http://120.79.132.118/get_data.xml"
         private const val HTTP_JSON_DATA = "http://120.79.132.118/get_data.json"
+        private const val RETROFIT_JSON_DATA = "http://120.79.132.118/"
     }
 
     private val mBinding by lazy { HttpActivityBinding.inflate(layoutInflater) }
@@ -101,8 +113,7 @@ class HttpActivity : AppCompatActivity() {
     private fun initComponent() {
         mBinding.apply {
             webView.setOnClickListener {
-                if (!isRun) startActivity(Intent(main,
-                    WebViewActivity::class.java))
+                if (!isRun) startActivity(Intent(main, WebViewActivity::class.java))
             }
             myWebView.setOnClickListener { if (!isRun) webViews() }
             httpUrConnection.setOnClickListener { if (!isRun) sendRequestWithHttpURLConnection() }
@@ -111,6 +122,8 @@ class HttpActivity : AppCompatActivity() {
             pullXmlData.setOnClickListener { if (!isRun) sendRequestWithPullXMLConnection() }
             saxXmlData.setOnClickListener { if (!isRun) sendRequestWithSaxXMLConnection() }
             parseJsonWithJsonObject.setOnClickListener { if (!isRun) sendRequestWithJsonObjectConnection() }
+            parseJsonWithGson.setOnClickListener { if (!isRun) sendRequestWithGsonConnection() }
+            retrofit.setOnClickListener { if (!isRun) retroFit() }
         }
     }
 
@@ -118,6 +131,84 @@ class HttpActivity : AppCompatActivity() {
         val intent = Intent(main, WebViewActivity::class.java)
         intent.putExtra("MyWebView", "MyWeb")
         startActivity(intent)
+    }
+
+    private fun retroFit() {
+        isRun = true
+        mBinding.progressBar.visibility= View.VISIBLE
+        val retrofit = Retrofit.Builder()
+            .baseUrl(RETROFIT_JSON_DATA)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val appService = retrofit.create(AppService::class.java)
+        appService.getAppData().enqueue(object : Callback<List<App>> {
+            /**
+             * Invoked for a received HTTP response.
+             *
+             *
+             * Note: An HTTP response may still indicate an application-level failure such as a 404 or 500.
+             * Call [Response.isSuccessful] to determine if the response indicates success.
+             */
+            override fun onResponse(call: Call<List<App>>, response: Response<List<App>>) {
+                var responseText = ""
+                val list = response.body()
+                list?.let {
+                    for (app in list) {
+                        responseText += "${app.id}   ${app.name}   ${app.version}\n"
+                    }
+                    runOnUiThread {
+                        main.showToasts(responseText)
+                        mBinding.responseText.text = responseText
+                        mBinding.progressBar.visibility = View.INVISIBLE
+                        isRun = false
+                    }
+                }
+            }
+
+            /**
+             * Invoked when a network exception occurred talking to the server or when an unexpected exception
+             * occurred creating the request or processing the response.
+             */
+            override fun onFailure(call: Call<List<App>>, t: Throwable) {
+                runOnUiThread {
+                    main.showToasts("获取JSON数据失败，请检查网络是否开启！！")
+                    mBinding.progressBar.visibility = View.INVISIBLE
+                    isRun = false
+                }
+                t.printStackTrace()
+            }
+
+        })
+    }
+
+    private fun sendRequestWithGsonConnection() {
+        isRun = true
+        mBinding.progressBar.visibility = View.VISIBLE
+        thread {
+            val connection = OkHttpClient()
+            try {
+                val request = Request.Builder()
+                    .url(HTTP_JSON_DATA)
+                    .build()
+                val response = connection.newCall(request).execute()
+                val responseData = response.body?.string()
+                runOnUiThread {
+                    responseData?.let {
+                        parseJsonWithGson(responseData)
+                        mBinding.responseText.text = responseData
+                        mBinding.progressBar.visibility = View.INVISIBLE
+                    }
+                }
+            } catch (e: Exception) {
+                runOnUiThread {
+                    main.showToasts("获取JSON数据失败，请检查网络是否开启！！")
+                    mBinding.progressBar.visibility = View.INVISIBLE
+                }
+                e.printStackTrace()
+            } finally {
+                if (isRun) isRun = false
+            }
+        }
     }
 
     private fun sendRequestWithJsonObjectConnection() {
@@ -170,7 +261,7 @@ class HttpActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    main.showToasts("获取阿里云网站数据失败，请检查网络是否开启！")
+                    main.showToasts("获取阿里云网站数据失败，请检查网络是否开启！！")
                     mBinding.progressBar.visibility = View.INVISIBLE
                 }
                 e.printStackTrace()
@@ -202,13 +293,13 @@ class HttpActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    main.showToasts("获取MineBBs网站数据失败，请检查网络是否开启！")
+                    main.showToasts("获取MineBBs网站数据失败，请检查网络是否开启！！")
                     mBinding.progressBar.visibility = View.INVISIBLE
                 }
                 e.printStackTrace()
             } finally {
-                if (isRun) isRun = false
                 connection?.disconnect()
+                if (isRun) isRun = false
             }
         }
     }
@@ -239,13 +330,13 @@ class HttpActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    main.showToasts("获取百度网站数据失败，请检查网络是否开启！")
+                    main.showToasts("获取百度网站数据失败，请检查网络是否开启！！")
                     mBinding.progressBar.visibility = View.INVISIBLE
                 }
                 e.printStackTrace()
             } finally {
-                if (isRun) isRun = false
                 connection?.disconnect()
+                if (isRun) isRun = false
             }
         }
     }
@@ -270,7 +361,7 @@ class HttpActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    main.showToasts("获取XML数据失败，请检查网络是否开启！")
+                    main.showToasts("获取XML数据失败，请检查网络是否开启！！")
                     mBinding.progressBar.visibility = View.INVISIBLE
                 }
                 e.printStackTrace()
@@ -296,7 +387,7 @@ class HttpActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    main.showToasts("获取XML数据失败，请检查网络是否开启！")
+                    main.showToasts("获取XML数据失败，请检查网络是否开启！！")
                     mBinding.progressBar.visibility = View.INVISIBLE
                 }
                 e.printStackTrace()
@@ -323,6 +414,19 @@ class HttpActivity : AppCompatActivity() {
         }
         runOnUiThread {
             main.showToasts(jsonText)
+        }
+    }
+
+    private fun parseJsonWithGson(jsonData: String) {
+        var gsonText = ""
+        val gson = Gson()
+        val typeOf: Type = object : TypeToken<List<App>>() {}.type
+        val appList: List<App> = gson.fromJson(jsonData, typeOf)
+        appList.forEach {
+            gsonText += "${it.id}   ${it.name}   ${it.version}\n"
+        }
+        runOnUiThread {
+            main.showToasts(gsonText, true)
         }
     }
 

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import cn.example.androidProject.R
-import cn.example.androidProject.Util.showToast
+import cn.example.androidProject.util.Util.showToast
 import cn.example.androidProject.databinding.ListActivityBinding
 import kotlin.collections.ArrayList
 
@@ -61,7 +61,7 @@ class ListActivity : AppCompatActivity() {
         mBinding.listview.setOnItemClickListener { parent, view, position, id ->
             if (fruitData.isNotEmpty()) {
                 val str = "You click the ID is $id\n FruitName is ${fruitData[position].fruitName} "
-                showToast(this, text = str)
+                showToast(this, str)
             } else {
                 val str = "You click the ID is $id\n Name is ${data[position]} "
                 showToast(this, str)

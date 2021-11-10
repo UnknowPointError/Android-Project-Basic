@@ -1,6 +1,6 @@
 package anonymous
 
-import cn.example.androidProject.Util.typename
+import cn.example.androidProject.util.Util.typename
 
 /*************************
  * @Name: Android Project

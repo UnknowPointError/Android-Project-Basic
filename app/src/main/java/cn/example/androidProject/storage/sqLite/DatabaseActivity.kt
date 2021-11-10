@@ -10,8 +10,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.example.androidProject.R
-import cn.example.androidProject.Util.RecyclerView
-import cn.example.androidProject.Util.showToasts
+import cn.example.androidProject.util.Util.RecyclerView
+import cn.example.androidProject.util.Util.showToasts
 import cn.example.androidProject.databinding.DatabaseActivityBinding
 
 @SuppressLint("Range")

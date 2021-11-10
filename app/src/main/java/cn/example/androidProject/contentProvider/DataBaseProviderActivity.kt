@@ -7,8 +7,8 @@ import android.os.Bundle
 import androidx.core.content.contentValuesOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.example.androidProject.R
-import cn.example.androidProject.Util
-import cn.example.androidProject.Util.showToasts
+import cn.example.androidProject.util.Util
+import cn.example.androidProject.util.Util.showToasts
 import cn.example.androidProject.databinding.DataBaseProviderActivityBinding
 
 class DataBaseProviderActivity : AppCompatActivity() {

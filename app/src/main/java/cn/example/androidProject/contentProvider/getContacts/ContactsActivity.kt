@@ -9,8 +9,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.example.androidProject.R
-import cn.example.androidProject.Util
-import cn.example.androidProject.Util.showToasts
+import cn.example.androidProject.util.Util
+import cn.example.androidProject.util.Util.showToasts
 import cn.example.androidProject.databinding.ContactsActivityBinding
 
 class ContactsActivity : AppCompatActivity() {

@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +19,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProject"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".materialDesign.collapsingToolBarLayout.CollapsingToolBarActivity"
+            android:exported="false"
+            android:label="CollapsingToolBar"
+            android:theme="@style/CollapsingToolBarActivity" />
+        <activity
+            android:name=".materialDesign.cardView.CardViewActivity"
+            android:exported="false"
+            android:label="CardView"
+            android:theme="@style/OwnActionBar" />
+        <activity
+            android:name=".materialDesign.floatingActionButton.FloatingActionButtonActivity"
+            android:exported="false"
+            android:label="DrawerLayout"
+            android:theme="@style/OwnActionBar" />
+        <activity
+            android:name=".materialDesign.navigationView.NavigationViewActivity"
+            android:exported="false"
+            android:label="DrawerLayout"
+            android:theme="@style/OwnActionBar" />
+        <activity
+            android:name=".materialDesign.drawerLayout.DrawerLayoutActivity"
+            android:exported="false"
+            android:label="DrawerLayout"
+            android:theme="@style/OwnActionBar" />
+        <activity
+            android:name=".materialDesign.toolBar.ToolBarActivity"
+            android:exported="false"
+            android:label="Fruits"
+            android:theme="@style/OwnActionBar" />
         <activity
             android:name=".http.WebViewActivity"
             android:exported="false" />
@@ -58,7 +87,6 @@
             android:authorities="cn.example.androidProject.provider"
             android:enabled="true"
             android:exported="true" />
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="cn.example.androidProject.cameraAlbum"
