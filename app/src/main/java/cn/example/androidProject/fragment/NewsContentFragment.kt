@@ -34,7 +34,7 @@ class NewsContentFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         mBinding = NewsContentFragBinding.inflate(inflater, container, false)
         return mBinding.root
     }

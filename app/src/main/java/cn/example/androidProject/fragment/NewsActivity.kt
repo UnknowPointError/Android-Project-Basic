@@ -2,10 +2,7 @@ package cn.example.androidProject.fragment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import androidx.fragment.app.Fragment
-import cn.example.androidProject.R
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.databinding.NewsActivityBinding
 
 /*************************
@@ -24,6 +21,7 @@ class NewsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        MyApplication.context = this
 
     }
 }

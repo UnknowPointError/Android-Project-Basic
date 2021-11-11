@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.R
 import cn.example.androidProject.databinding.MsgLeftBinding
 import cn.example.androidProject.databinding.MsgRightBinding
@@ -69,6 +70,7 @@ class TalkActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        MyApplication.context = this
         initMsg()
         initComponent()
     }

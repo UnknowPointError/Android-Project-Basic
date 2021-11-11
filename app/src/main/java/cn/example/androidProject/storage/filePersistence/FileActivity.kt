@@ -3,6 +3,7 @@ package cn.example.androidProject.storage.filePersistence
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.databinding.StorageActivityBinding
 import java.io.*
 import java.lang.StringBuilder
@@ -23,6 +24,7 @@ class FileActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        MyApplication.context = this
         initComponent()
     }
 

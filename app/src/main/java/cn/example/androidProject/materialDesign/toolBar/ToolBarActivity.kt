@@ -4,9 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.R
 import cn.example.androidProject.databinding.MaterialToolbarActivityBinding
-import cn.example.androidProject.util.Util.showToasts
+import cn.example.androidProject.util.Util.showToast
 
 class ToolBarActivity : AppCompatActivity() {
 
@@ -15,6 +16,7 @@ class ToolBarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        MyApplication.context = this
         setSupportActionBar(mBinding.toolBar)
     }
 
@@ -25,9 +27,9 @@ class ToolBarActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.backup -> showToasts("You Clicked Backup.")
-            R.id.delete -> showToasts("You Clicked Delete.")
-            R.id.settings -> showToasts("You Clicked Settings.")
+            R.id.backup -> showToast("You Clicked Backup.")
+            R.id.delete -> showToast("You Clicked Delete.")
+            R.id.settings -> showToast("You Clicked Settings.")
         }
         return true
     }

@@ -2,7 +2,9 @@ package cn.example.androidProject.materialDesign.collapsingToolBarLayout
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.R
 import cn.example.androidProject.databinding.MaterialCollapsingActivityBinding
 import com.bumptech.glide.Glide
@@ -19,6 +21,7 @@ class CollapsingToolBarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        MyApplication.context = this
         initComponent()
     }
 
@@ -32,6 +35,11 @@ class CollapsingToolBarActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar, menu)
+        return true
+    }
+
     private fun initComponent() {
         val fruitName = intent.getStringExtra(FRUIT_NAME) ?: "This is CollapsingToolBarActivity"
         val fruitImageID = intent.getIntExtra(FRUIT_IMAGE_ID, R.drawable.a7)
@@ -42,5 +50,5 @@ class CollapsingToolBarActivity : AppCompatActivity() {
         mBinding.fruitContentText.text = generateFruitContent(fruitName)
     }
 
-    private fun generateFruitContent(fruitName: String): CharSequence? = fruitName.repeat(500)
+    private fun generateFruitContent(fruitName: String): CharSequence = fruitName.repeat(500)
 }

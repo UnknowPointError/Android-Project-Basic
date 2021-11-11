@@ -9,9 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.R
 import cn.example.androidProject.util.Util.RecyclerView
-import cn.example.androidProject.util.Util.showToasts
+import cn.example.androidProject.util.Util.showToast
 import cn.example.androidProject.databinding.DatabaseActivityBinding
 
 @SuppressLint("Range")
@@ -34,7 +35,7 @@ class DatabaseActivity : AppCompatActivity() {
         override fun onCreate(db: SQLiteDatabase) {
             db.execSQL(createBook)
             db.execSQL(createCategory)
-            context.showToasts("Create Succeeded")
+            showToast("Create Succeeded")
         }
 
         override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -55,6 +56,7 @@ class DatabaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        MyApplication.context = this
         initComponent()
     }
 
@@ -83,7 +85,7 @@ class DatabaseActivity : AppCompatActivity() {
             }
             dbHelper.writableDatabase
             if (!getBoolean("isCreate BookStore", true)) {
-                main.showToasts("Database has been created.")
+                showToast("Database has been created.")
             }
         }
     }
@@ -108,7 +110,7 @@ class DatabaseActivity : AppCompatActivity() {
                 }
                 db.insert("Book", null, values2)
                 queryData()
-//                main.showToasts("Data add Successfully")
+//                showToast("Data add Successfully")
                 db.setTransactionSuccessful()
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -124,9 +126,9 @@ class DatabaseActivity : AppCompatActivity() {
         try {
             val isDelete = db.delete("Book", "pages > ?", arrayOf("500"))
             if (isDelete != 0)
-                main.showToasts("Delete Data Successfully : pages > 500")
+                showToast("Delete Data Successfully : pages > 500")
             else
-                main.showToasts("Delete Data Fail.")
+                showToast("Delete Data Fail.")
             queryData()
             db.setTransactionSuccessful()
 
@@ -144,9 +146,9 @@ class DatabaseActivity : AppCompatActivity() {
             val isDelete = db.delete("Book", null, null)
             if (isDelete != 0) {
                 newPosition = -1
-                main.showToasts("Delete AllData Successfully.")
+                showToast("Delete AllData Successfully.")
             } else
-                main.showToasts("Delete AllData Fail.")
+                showToast("Delete AllData Fail.")
             queryData()
             db.setTransactionSuccessful()
 
@@ -171,12 +173,12 @@ class DatabaseActivity : AppCompatActivity() {
             }
             val isDelete = db.delete("Book", "id < 0", null)
             if (isDelete != 0)
-                main.showToasts("Delete Last Data Successfully.")
+                showToast("Delete Last Data Successfully.")
             else
-                main.showToasts("Delete Data Fail.")
+                showToast("Delete Data Fail.")
             queryData()
             db.setTransactionSuccessful()
-
+            cursor.close()
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
@@ -190,7 +192,7 @@ class DatabaseActivity : AppCompatActivity() {
         try {
             val values = ContentValues()
             values.put("price", "10.99")
-            val isUpdate = db.update("Book", values, "name = ?", arrayOf("The Da Vinci Code"))
+            db.update("Book", values, "name = ?", arrayOf("The Da Vinci Code"))
             newPosition = -1
             queryData()
             db.setTransactionSuccessful()
@@ -228,7 +230,7 @@ class DatabaseActivity : AppCompatActivity() {
                     adapter.setHasStableIds(true)
                     mBinding.recyclerView.adapter = adapter
                 } else {
-                    main.showToasts("Data is up to data")
+                    showToast("Data is up to data")
                 }
                 close()
             }

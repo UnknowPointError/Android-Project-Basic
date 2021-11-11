@@ -6,9 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.contentValuesOf
 import androidx.recyclerview.widget.LinearLayoutManager
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.R
 import cn.example.androidProject.util.Util
-import cn.example.androidProject.util.Util.showToasts
+import cn.example.androidProject.util.Util.showToast
 import cn.example.androidProject.databinding.DataBaseProviderActivityBinding
 
 class DataBaseProviderActivity : AppCompatActivity() {
@@ -22,6 +23,7 @@ class DataBaseProviderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+MyApplication.context = this
         initComponent()
     }
 
@@ -57,7 +59,7 @@ class DataBaseProviderActivity : AppCompatActivity() {
             close()
             recyclerUpdate()
         }
-        this.showToasts("执行查询：$dataBase")
+        showToast("执行查询：$dataBase")
     }
 
     private fun add() {
@@ -70,7 +72,7 @@ class DataBaseProviderActivity : AppCompatActivity() {
         val newUri = contentResolver.insert(uri, values)
         bookId = newUri?.pathSegments?.get(1)
         mBinding.bookId.text = bookId
-        this.showToasts("bookId = $bookId")
+        showToast("bookId = $bookId")
         query()
         recyclerUpdate()
     }

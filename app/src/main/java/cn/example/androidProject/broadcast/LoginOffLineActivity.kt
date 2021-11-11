@@ -7,6 +7,7 @@ import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.R
 import cn.example.androidProject.databinding.LoginofflineActivityBinding
 
@@ -45,6 +46,7 @@ class LoginOffLineActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+MyApplication.context = this
         LoginActivityCollector.addActivity(this)
         mBinding.offLine.setOnClickListener {
             val intent = Intent("OFFLINE")

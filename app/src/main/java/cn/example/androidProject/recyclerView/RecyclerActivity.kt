@@ -4,10 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.R
-import cn.example.androidProject.util.Util
 import cn.example.androidProject.databinding.RecyclerActivityBinding
 import cn.example.androidProject.listView.Fruit
+import cn.example.androidProject.util.Util.showToast
 
 /*************************
  * @ClassName: RecyclerActivity.kt
@@ -25,14 +26,16 @@ class RecyclerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+MyApplication.context = this
         initComponent()
     }
 
     private fun initComponent() {
         initFruit()
+
         val adapter = RecyclerAdapter(fruitData) {
             val str = "You click the name is ${it.fruitName}\nID is ${it.id}"
-            Util.showToast(this, str)
+            showToast(str)
         }
         val layoutManager = when (intent.getStringExtra("RecyclerView")) {
             "Grid" -> GridLayoutManager(this, 2)

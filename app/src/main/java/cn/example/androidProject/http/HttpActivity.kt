@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import cn.example.androidProject.MainActivity
-import cn.example.androidProject.util.Util.showToasts
+import cn.example.androidProject.MyApplication
+import cn.example.androidProject.util.Util.showToast
 import cn.example.androidProject.databinding.HttpActivityBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -107,6 +107,7 @@ class HttpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+MyApplication.context = this
         initComponent()
     }
 
@@ -157,7 +158,7 @@ class HttpActivity : AppCompatActivity() {
                         responseText += "${app.id}   ${app.name}   ${app.version}\n"
                     }
                     runOnUiThread {
-                        main.showToasts(responseText)
+                        showToast(responseText)
                         mBinding.responseText.text = responseText
                         mBinding.progressBar.visibility = View.INVISIBLE
                         isRun = false
@@ -171,7 +172,7 @@ class HttpActivity : AppCompatActivity() {
              */
             override fun onFailure(call: Call<List<App>>, t: Throwable) {
                 runOnUiThread {
-                    main.showToasts("获取JSON数据失败，请检查网络是否开启！！")
+                    showToast("获取JSON数据失败，请检查网络是否开启！！")
                     mBinding.progressBar.visibility = View.INVISIBLE
                     isRun = false
                 }
@@ -201,7 +202,7 @@ class HttpActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    main.showToasts("获取JSON数据失败，请检查网络是否开启！！")
+                    showToast("获取JSON数据失败，请检查网络是否开启！！")
                     mBinding.progressBar.visibility = View.INVISIBLE
                 }
                 e.printStackTrace()
@@ -231,7 +232,7 @@ class HttpActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    main.showToasts("获取JSON数据失败，请检查网络是否开启！")
+                    showToast("获取JSON数据失败，请检查网络是否开启！")
                     mBinding.progressBar.visibility = View.INVISIBLE
                 }
                 e.printStackTrace()
@@ -255,13 +256,13 @@ class HttpActivity : AppCompatActivity() {
                 runOnUiThread {
                     if (responseData != null) {
                         mBinding.responseText.text = responseData
-                        main.showToasts("获取阿里云网站数据成功")
+                        showToast("获取阿里云网站数据成功")
                         mBinding.progressBar.visibility = View.INVISIBLE
                     }
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    main.showToasts("获取阿里云网站数据失败，请检查网络是否开启！！")
+                    showToast("获取阿里云网站数据失败，请检查网络是否开启！！")
                     mBinding.progressBar.visibility = View.INVISIBLE
                 }
                 e.printStackTrace()
@@ -287,13 +288,13 @@ class HttpActivity : AppCompatActivity() {
                     it.forEachLine { str -> response.append(str) }
                     runOnUiThread {
                         mBinding.responseText.text = response
-                        main.showToasts("获取MineBBS数据成功")
+                        showToast("获取MineBBS数据成功")
                         mBinding.progressBar.visibility = View.INVISIBLE
                     }
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    main.showToasts("获取MineBBs网站数据失败，请检查网络是否开启！！")
+                    showToast("获取MineBBs网站数据失败，请检查网络是否开启！！")
                     mBinding.progressBar.visibility = View.INVISIBLE
                 }
                 e.printStackTrace()
@@ -325,12 +326,12 @@ class HttpActivity : AppCompatActivity() {
                 }
                 runOnUiThread {
                     mBinding.responseText.text = response.toString()
-                    main.showToasts("获取百度数据成功")
+                    showToast("获取百度数据成功")
                     mBinding.progressBar.visibility = View.INVISIBLE
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    main.showToasts("获取百度网站数据失败，请检查网络是否开启！！")
+                    showToast("获取百度网站数据失败，请检查网络是否开启！！")
                     mBinding.progressBar.visibility = View.INVISIBLE
                 }
                 e.printStackTrace()
@@ -361,7 +362,7 @@ class HttpActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    main.showToasts("获取XML数据失败，请检查网络是否开启！！")
+                    showToast("获取XML数据失败，请检查网络是否开启！！")
                     mBinding.progressBar.visibility = View.INVISIBLE
                 }
                 e.printStackTrace()
@@ -387,7 +388,7 @@ class HttpActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 runOnUiThread {
-                    main.showToasts("获取XML数据失败，请检查网络是否开启！！")
+                    showToast("获取XML数据失败，请检查网络是否开启！！")
                     mBinding.progressBar.visibility = View.INVISIBLE
                 }
                 e.printStackTrace()
@@ -413,7 +414,7 @@ class HttpActivity : AppCompatActivity() {
             e.printStackTrace()
         }
         runOnUiThread {
-            main.showToasts(jsonText)
+            showToast(jsonText)
         }
     }
 
@@ -426,7 +427,7 @@ class HttpActivity : AppCompatActivity() {
             gsonText += "${it.id}   ${it.name}   ${it.version}\n"
         }
         runOnUiThread {
-            main.showToasts(gsonText, true)
+            showToast(gsonText, true)
         }
     }
 
@@ -473,7 +474,7 @@ class HttpActivity : AppCompatActivity() {
                 eventType = xmlPullParser.next()
             }
             runOnUiThread {
-                main.showToasts("$xmlText", true)
+                showToast("$xmlText", true)
             }
         } catch (e: Exception) {
             e.printStackTrace()

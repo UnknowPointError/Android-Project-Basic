@@ -6,14 +6,14 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.view.View
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.R
-import cn.example.androidProject.util.Util
 import cn.example.androidProject.databinding.BasicActiivtyBinding
+import cn.example.androidProject.util.Util.showToast
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.*
 import kotlin.concurrent.thread
 
 /*************************
@@ -65,6 +65,7 @@ class BasicActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        MyApplication.context = this
         initListener()
     }
 
@@ -87,10 +88,10 @@ class BasicActivity : AppCompatActivity() {
             splicBtn.setOnClickListener {
                 when {
                     edit1.text.toString() == "" -> {
-                        Util.showToast(this@BasicActivity, "Please input Username")
+                        showToast("Please input Username")
                     }
                     edit2.text.toString() == "" -> {
-                        Util.showToast(this@BasicActivity, "Please input Password")
+                        showToast("Please input Password")
                     }
                     else -> {
                         text.autoLinkMask

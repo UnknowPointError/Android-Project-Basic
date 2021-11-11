@@ -8,9 +8,10 @@ import android.provider.ContactsContract
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.R
 import cn.example.androidProject.util.Util
-import cn.example.androidProject.util.Util.showToasts
+import cn.example.androidProject.util.Util.showToast
 import cn.example.androidProject.databinding.ContactsActivityBinding
 
 class ContactsActivity : AppCompatActivity() {
@@ -23,6 +24,7 @@ class ContactsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        MyApplication.context = this
         if (ContextCompat.checkSelfPermission(main,
                 android.Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED
         ) {
@@ -46,7 +48,7 @@ class ContactsActivity : AppCompatActivity() {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     readContacts()
                 } else {
-                    main.showToasts("You denied the permission")
+                    showToast("You denied the permission")
                 }
             }
         }

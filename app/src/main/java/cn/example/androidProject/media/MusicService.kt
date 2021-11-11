@@ -19,7 +19,7 @@ import kotlin.concurrent.thread
  **************************/
 class MusicService : Service() {
 
-    override fun onBind(p0: Intent?): IBinder? {
+    override fun onBind(p0: Intent?): IBinder {
         return MediaBinder()
     }
 

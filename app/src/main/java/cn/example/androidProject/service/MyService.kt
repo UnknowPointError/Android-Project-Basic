@@ -11,8 +11,8 @@ import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
-import cn.example.androidProject.MainActivity
 import cn.example.androidProject.R
+import cn.example.androidProject.materialDesign.cardView.CardViewActivity
 
 class MyService : Service() {
 
@@ -41,7 +41,7 @@ class MyService : Service() {
                 NotificationManager.IMPORTANCE_DEFAULT)
             manager.createNotificationChannel(channel)
         }
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, CardViewActivity::class.java)
         val pi = PendingIntent.getActivity(this, 0, intent, 0)
         val notification = NotificationCompat.Builder(this, "my_service")
             .setContentTitle("Download Title")

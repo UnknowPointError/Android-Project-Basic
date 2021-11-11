@@ -33,7 +33,7 @@ class NewsTitleFragment : Fragment() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val mBinding = NewsItemBinding.inflate(LayoutInflater.from(parent.context))
-            var holder = ViewHolder(mBinding)
+            val holder = ViewHolder(mBinding)
             holder.itemView.setOnClickListener {
                 val news = newsList[holder.adapterPosition]
                 isTwoPane = activity?.findViewById<View>(R.id.newsContentFrag) != null
@@ -80,7 +80,7 @@ class NewsTitleFragment : Fragment() {
 
     private fun getNews(): List<News> {
         val newList = ArrayList<News>()
-        val text: String = "This is news title"
+        val text = "This is news title"
         for (i in 1..50) {
             val news = News("$text $i", getRandomLengthString("$text $i. "))
             newList.add(news)

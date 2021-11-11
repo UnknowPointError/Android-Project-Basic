@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menu_ownMsg"
+            android:icon="@drawable/apple_pic"
+            android:title="个人信息" />
+
+        <item
+            android:id="@+id/menu_contacts"
+            android:icon="@drawable/nav_friends"
+            android:title="联系人" />
+
+        <item
+            android:id="@+id/menu_search"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="搜索" />
+
+        <item
+            android:id="@+id/menu_position"
+            android:icon="@drawable/nav_location"
+            android:title="坐标" />
+
+    </group>
+</menu>

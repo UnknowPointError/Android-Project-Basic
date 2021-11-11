@@ -3,19 +3,15 @@ package cn.example.androidProject.materialDesign.cardView
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import cn.example.androidProject.R
-import cn.example.androidProject.databinding.MaterialCollapsingActivityBinding
 import cn.example.androidProject.databinding.MaterialRecyclerviewItemBinding
 import cn.example.androidProject.listView.Fruit
 import cn.example.androidProject.materialDesign.collapsingToolBarLayout.CollapsingToolBarActivity
-import cn.example.androidProject.materialDesign.navigationView.NavigationViewActivity
 import com.bumptech.glide.Glide
-import okhttp3.internal.notify
 
 /*************************
  * @ProjectName: Android Project

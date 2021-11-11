@@ -3,7 +3,8 @@ package cn.example.androidProject.broadcast
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import cn.example.androidProject.util.Util.showToasts
+import cn.example.androidProject.MyApplication
+import cn.example.androidProject.util.Util.showToast
 
 
 /*************************
@@ -17,6 +18,7 @@ import cn.example.androidProject.util.Util.showToasts
 class ToBootComplete : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        context.showToasts("Boot Complete")
+        MyApplication.context = context
+        showToast("Boot Complete")
     }
 }

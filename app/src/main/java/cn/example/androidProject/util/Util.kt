@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import cn.example.androidProject.MyApplication
 import com.google.android.material.snackbar.Snackbar
 
 /*************************
@@ -77,36 +78,21 @@ object Util {
     private var toast: Toast? = null
     private lateinit var resources: Resources
 
+
     /*************************
      * @Name: showToast
-     * @Params: [context, text]
-     * @Author: BarryAllen
-     * @Description:
-     * @DateTime: 2021/11/4 17:12
-     **************************/
-    fun showToast(context: Context, text: String) {
-        if (toast?.equals(null) == false)
-            (toast ?: return).cancel()// 当toast为null时返回冒号后面的值，只有return则退出
-        toast = Toast.makeText(context, text, Toast.LENGTH_SHORT)
-        toast?.show()
-    }
-
-
-    /*************************
-     * @Name: showToasts
      * @Params: [text]
      * @Author: BarryAllen
      * @Description:
      * @DateTime: 2021/11/4 17:11
      **************************/
-    fun Context.showToasts(text: String, displayTimeMode: Boolean = false) {
-        val context: Context = this
-        if (toast?.equals(null) == false)
+    fun showToast(text: String, displayTimeMode: Boolean = false) {
+        if (toast != null)
             (toast ?: return).cancel()// 当toast为null时返回冒号后面的值，只有return则退出
         toast = if (!displayTimeMode)
-            Toast.makeText(context, text, Toast.LENGTH_SHORT)
+            Toast.makeText(MyApplication.context, text, Toast.LENGTH_SHORT)
         else
-            Toast.makeText(context, text, Toast.LENGTH_LONG)
+            Toast.makeText(MyApplication.context, text, Toast.LENGTH_LONG)
         toast?.show()
     }
 

@@ -18,6 +18,9 @@
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/fruit.xml" value="0.6" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/http_activity.xml" value="0.18518518518518517" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/http_url_activity.xml" value="0.2713541666666667" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/jetpack_livedata_activity.xml" value="0.2" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/jetpack_room_activity.xml" value="0.2713541666666667" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/jetpack_viewmodel_activity.xml" value="0.264" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/layout.xml" value="0.13541666666666666" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/login_activity.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/loginoffline_activity.xml" value="0.22083333333333333" />
@@ -47,6 +50,7 @@
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/test.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/ttes.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/web_view_activity.xml" value="0.2546875" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/menu/my_menu.xml" value="0.31354166666666666" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/menu/nav_menu.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/menu/toolbar.xml" value="0.2713541666666667" />
       </map>

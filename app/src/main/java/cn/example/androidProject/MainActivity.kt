@@ -17,14 +17,16 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import cn.example.androidProject.http.HttpActivity
 import cn.example.androidProject.basic.BasicActivity
-import cn.example.androidProject.util.Util.showToasts
+import cn.example.androidProject.util.Util.showToast
 import cn.example.androidProject.broadcast.LoginActivity
 import cn.example.androidProject.cameraAlbum.CameraAlbumActivity
 import cn.example.androidProject.contentProvider.DataBaseProviderActivity
 import cn.example.androidProject.contentProvider.getContacts.ContactsActivity
 import cn.example.androidProject.databinding.ActivityMainBinding
-import cn.example.androidProject.databinding.MaterialCardviewActivityBinding
 import cn.example.androidProject.fragment.NewsActivity
+import cn.example.androidProject.jetpack.liveData.LiveDataActivity
+import cn.example.androidProject.jetpack.room.RoomActivity
+import cn.example.androidProject.jetpack.viewModel.ViewModelActivity
 import cn.example.androidProject.listView.ListActivity
 import cn.example.androidProject.materialDesign.cardView.CardViewActivity
 import cn.example.androidProject.materialDesign.collapsingToolBarLayout.CollapsingToolBarActivity
@@ -40,7 +42,6 @@ import cn.example.androidProject.service.ServiceActivity
 import cn.example.androidProject.storage.filePersistence.FileActivity
 import cn.example.androidProject.storage.sharedPreferences.SharedPreferencesActivity
 import cn.example.androidProject.storage.sqLite.DatabaseActivity
-import com.google.android.material.card.MaterialCardView
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 /*************************
@@ -61,8 +62,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val timeChangeReceiver by lazy {
         object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
+                MyApplication.context = context
                 when (intent?.action) {
-                    actionFly -> main.showToasts("飞行模式已变化")
+                    actionFly -> showToast("飞行模式已变化")
                     actionTimeTick -> checkMemory("时间改变")
                 }
             }
@@ -71,8 +73,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val dynamicBroadcastReceiver by lazy {
         object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
+                MyApplication.context = context
                 when (intent?.action) {
-                    "DynamicAction" -> main.showToasts("Okay")
+                    "DynamicAction" -> showToast("Okay")
                 }
             }
         }
@@ -82,6 +85,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        MyApplication.context = this
         initComponent()
         registerBroadCast()
         initNotice()
@@ -95,18 +99,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onRequestPermissionsResult(rCode: Int, perm: Array<out String>, grant: IntArray) {
         super.onRequestPermissionsResult(rCode, perm, grant)
+        MyApplication.context = main
         when (rCode) {
             1 -> {
                 if (grant.isNotEmpty() && grant[0] == PackageManager.PERMISSION_GRANTED) {
                     callPhone()
                 } else {
-                    main.showToasts("You denied the Permission.")
+                    showToast("You denied the Permission.")
                 }
             }
         }
     }
 
     override fun onClick(v: View?) {
+        MyApplication.context = main
         mBinding.apply {
             when (v?.id) {
                 basicBtn.id -> startActivity<BasicActivity> { }
@@ -146,8 +152,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 drawerLayout.id -> startActivity<DrawerLayoutActivity> { }
                 navigationView.id -> startActivity<NavigationViewActivity> { }
                 floatingActionButton.id -> startActivity<FloatingActionButtonActivity> { }
-                cardView.id -> startActivity<CardViewActivity> {  }
-                collapsingToolbar.id -> startActivity<CollapsingToolBarActivity> {  }
+                cardView.id -> startActivity<CardViewActivity> { }
+                collapsingToolbar.id -> startActivity<CollapsingToolBarActivity> { }
+                viewModel.id -> startActivity<ViewModelActivity> { }
+                liveData.id -> startActivity<LiveDataActivity> { }
+                room.id -> startActivity<RoomActivity> { }
             }
         }
     }
@@ -184,6 +193,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             floatingActionButton.setOnClickListener(main)
             cardView.setOnClickListener(main)
             collapsingToolbar.setOnClickListener(main)
+            viewModel.setOnClickListener(main)
+            liveData.setOnClickListener(main)
+            room.setOnClickListener(main)
         }
     }
 
@@ -204,14 +216,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val notification1 =
             NotificationCompat.Builder(this, "1")
                 .setContentTitle("This is content title")
-                .setStyle(NotificationCompat.BigTextStyle().bigText("""private fun initNotice() {
+                .setStyle(
+                    NotificationCompat.BigTextStyle().bigText(
+                        """private fun initNotice() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel("1", "name", NotificationManager.IMPORTANCE_DEFAULT)
             manager.createNotificationChannel(channel)
 
-        }"""))
-                .setStyle(NotificationCompat.BigPictureStyle()
-                    .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.a3)))
+        }"""
+                    )
+                )
+                .setStyle(
+                    NotificationCompat.BigPictureStyle()
+                        .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.a3))
+                )
                 .setSmallIcon(R.drawable.apple_pic)
                 .setContentIntent(pi)
                 .setAutoCancel(true)
@@ -229,21 +247,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun checkMemory(text: String = "检查内存") {
+
         val manager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val info = ActivityManager.MemoryInfo()
         manager.getMemoryInfo(info)
         val longMemory: Long = info.availMem / 1024 / 1024
         val totalMemory: Long = info.totalMem / 1024 / 1024
-        main.showToasts("【$text】\n可使用的内存为：$longMemory MB\n总内存为：$totalMemory MB")
+        showToast("【$text】\n可使用的内存为：$longMemory MB\n总内存为：$totalMemory MB")
     }
 
     private fun makeCall() {
-        if (ContextCompat.checkSelfPermission(main,
-                android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED
+        if (ContextCompat.checkSelfPermission(
+                main,
+                android.Manifest.permission.CALL_PHONE
+            ) != PackageManager.PERMISSION_GRANTED
         ) {
-            ActivityCompat.requestPermissions(main,
+            ActivityCompat.requestPermissions(
+                main,
                 arrayOf(android.Manifest.permission.CALL_PHONE),
-                1)
+                1
+            )
         } else {
             callPhone()
         }

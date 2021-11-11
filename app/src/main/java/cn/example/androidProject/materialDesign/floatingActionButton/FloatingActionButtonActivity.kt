@@ -4,15 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.core.view.GravityCompat
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.R
 import cn.example.androidProject.databinding.MaterialFloatingbuttonActivityBinding
 import cn.example.androidProject.util.Util.showSnackbar
-import cn.example.androidProject.util.Util.showToasts
-import com.google.android.material.snackbar.Snackbar
+import cn.example.androidProject.util.Util.showToast
 
-// TODO 此模块还包含SnackBar控件、CoordinatorLayout
+// TODO 此模块还包含SnackBar控件、CoordinatorLayout以及NavigationView控件
 // TODO CoordinatorLayout:作用和FrameLayout基本一致，但有额外的Material能力
 // TODO 实际上CoordinatorLayout可以监听所有子控件的事件并自动做出合理的相应
 
@@ -23,6 +22,7 @@ class FloatingActionButtonActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        MyApplication.context = this
         setSupportActionBar(mBinding.toolBar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
@@ -30,7 +30,7 @@ class FloatingActionButtonActivity : AppCompatActivity() {
         }
         mBinding.floatingActionButton.setOnClickListener {
             it.showSnackbar("Data delete.", "Undo") {
-                showToasts("Data restored.")
+                showToast("Data restored.")
             }
         }
     }
@@ -42,9 +42,9 @@ class FloatingActionButtonActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.backup -> showToasts("You Clicked Backup.")
-            R.id.delete -> showToasts("You Clicked Delete.")
-            R.id.settings -> showToasts("You Clicked Settings.")
+            R.id.backup -> showToast("You Clicked Backup.")
+            R.id.delete -> showToast("You Clicked Delete.")
+            R.id.settings -> showToast("You Clicked Settings.")
             android.R.id.home -> mBinding.drawerLayout.openDrawer(GravityCompat.START)
         }
         return true

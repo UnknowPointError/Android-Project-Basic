@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import cn.example.androidProject.databinding.MediaActivityBinding
 import android.os.Bundle
 import android.view.KeyEvent
+import cn.example.androidProject.MyApplication
 
 
 class MediaActivity : AppCompatActivity() {
@@ -28,6 +29,7 @@ class MediaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        MyApplication.context = this
         initService()
         initComponent()
     }

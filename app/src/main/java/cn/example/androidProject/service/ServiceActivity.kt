@@ -7,8 +7,7 @@ import android.content.ServiceConnection
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
-import android.util.Log
-import android.widget.TextView
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.databinding.ServiceActivityBinding
 
 class ServiceActivity : AppCompatActivity() {
@@ -39,6 +38,7 @@ class ServiceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+MyApplication.context = this
         initComponent()
     }
 

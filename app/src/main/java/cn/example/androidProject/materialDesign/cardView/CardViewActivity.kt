@@ -6,10 +6,11 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.R
 import cn.example.androidProject.databinding.MaterialCardviewActivityBinding
 import cn.example.androidProject.listView.Fruit
-import cn.example.androidProject.util.Util.showToasts
+import cn.example.androidProject.util.Util.showToast
 import java.util.ArrayList
 import kotlin.concurrent.thread
 
@@ -32,6 +33,7 @@ class CardViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        MyApplication.context = this
         setSupportActionBar(mBinding.toolBar)
         initFruits()
         initComponent()
@@ -44,9 +46,9 @@ class CardViewActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.backup -> showToasts("You Clicked Backup.")
-            R.id.delete -> showToasts("You Clicked Delete.")
-            R.id.settings -> showToasts("You Clicked Settings.")
+            R.id.backup -> showToast("You Clicked Backup.")
+            R.id.delete -> showToast("You Clicked Delete.")
+            R.id.settings -> showToast("You Clicked Settings.")
             android.R.id.home -> mBinding.drawerLayout.openDrawer(GravityCompat.START)
         }
         return true

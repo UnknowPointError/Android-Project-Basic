@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.databinding.StorageActivityBinding
 
 /*************************
@@ -23,6 +24,7 @@ class SharedPreferencesActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        MyApplication.context = this
         initComponent()
     }
 
@@ -30,7 +32,7 @@ class SharedPreferencesActivity : AppCompatActivity(), View.OnClickListener {
         mBinding.apply {
             when (v?.id) {
                 saveData.id -> {
-                    val editor = getSharedPreferences("data", MODE_PRIVATE).edit().apply {
+                    getSharedPreferences("data", MODE_PRIVATE).edit().apply {
                         putString("name", "Barry")
                         putInt("age", 17)
                         putBoolean("work", false)
@@ -40,7 +42,7 @@ class SharedPreferencesActivity : AppCompatActivity(), View.OnClickListener {
                 readData.id -> {
                     val getText = inputText.text.toString()
                     if (getText.isNotEmpty() && getText.isNotEmpty()) {
-                        val prefs = getSharedPreferences("data", MODE_PRIVATE).apply {
+                        getSharedPreferences("data", MODE_PRIVATE).apply {
                             val name = getString("name", "")
                             val age = getInt("age", 0)
                             val work = getBoolean("work", true)
@@ -48,7 +50,7 @@ class SharedPreferencesActivity : AppCompatActivity(), View.OnClickListener {
                             getText.forEach {
                                 if (it.toString() == " ") text.add("null") else text.add("$it")
                             }
-                            listView.adapter = ArrayAdapter<String>(main,
+                            listView.adapter = ArrayAdapter(main,
                                 android.R.layout.simple_list_item_1,
                                 text)
                         }
@@ -62,8 +64,10 @@ class SharedPreferencesActivity : AppCompatActivity(), View.OnClickListener {
         mBinding.apply {
             saveData.setOnClickListener(main)
             readData.setOnClickListener(main)
-            saveData.text = "SharedPreference Save"
-            readData.text = "SharedPreference Read"
+            val strSave = "SharedPreference Save"
+            val strRead = "SharedPreference Read"
+            saveData.text = strSave
+            readData.text = strRead
         }
     }
 

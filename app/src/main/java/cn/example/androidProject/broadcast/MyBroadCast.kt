@@ -3,11 +3,12 @@ package cn.example.androidProject.broadcast
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import cn.example.androidProject.util.Util.showToasts
+import cn.example.androidProject.MyApplication
+import cn.example.androidProject.util.Util.showToast
 
 /*************************
  * @ProjectName: Android Project
- * @Dir_Path: app/src/main/java/cn/example/androidproject/broadcast
+ * @Dir_Path: app/src/main/java/cn/example/androidProject/broadcast
  * @User: Lzp
  * @Author: BarryAllen
  * @Time: 2021/11/2 22:17
@@ -15,7 +16,8 @@ import cn.example.androidProject.util.Util.showToasts
  * @Description:
  **************************/
 class MyBroadCast : BroadcastReceiver() {
+
     override fun onReceive(context: Context, intent: Intent?) {
-        context.showToasts("接受自定义广播")
+        showToast("接受自定义广播")
     }
 }

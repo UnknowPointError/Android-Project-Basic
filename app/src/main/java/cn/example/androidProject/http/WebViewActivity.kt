@@ -3,9 +3,8 @@ package cn.example.androidProject.http
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebViewClient
-import cn.example.androidProject.R
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.databinding.WebViewActivityBinding
-import java.net.URL
 
 class WebViewActivity : AppCompatActivity() {
 
@@ -15,6 +14,7 @@ class WebViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+MyApplication.context = this
         supportActionBar?.hide()
         val value = intent.getStringExtra("MyWebView")
         mBinding.apply {

@@ -4,7 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import cn.example.androidProject.util.Util.showToasts
+import cn.example.androidProject.MyApplication
+import cn.example.androidProject.util.Util.showToast
 import cn.example.androidProject.databinding.LoginActivityBinding
 
 /*************************
@@ -22,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+MyApplication.context = this
         val prefs = getSharedPreferences("RememberPassword", Context.MODE_PRIVATE)
         val isRemember = prefs.getBoolean("isRemember", false)
         if (isRemember) {
@@ -52,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    main.showToasts("account or password is invalid.")
+                    showToast("account or password is invalid.")
                 }
             }
         }

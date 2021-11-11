@@ -13,7 +13,8 @@ import android.provider.MediaStore
 import androidx.activity.result.contract.ActivityResultContracts as ResultContracts
 import androidx.core.content.FileProvider
 import androidx.exifinterface.media.ExifInterface
-import cn.example.androidProject.util.Util.showToasts
+import cn.example.androidProject.MyApplication
+import cn.example.androidProject.util.Util.showToast
 import cn.example.androidProject.databinding.CameraAlbumActivityBinding
 import java.io.File
 
@@ -58,20 +59,21 @@ class CameraAlbumActivity : AppCompatActivity() {
         val bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(imageUri))
         bitmap?.let {
             mBinding.imageView.setImageBitmap(rotateIfRequired(bitmap))
-            this.showToasts("拍摄的照片显示成功")
+            showToast("拍摄的照片显示成功")
         }
     }
     private val album = registerForActivityResult(FromAlbum()) {
         val bitmap = getBitmapFromUri(it)
         bitmap?.let {
             mBinding.imageView.setImageBitmap(bitmap)
-            this.showToasts("从图库选取的图片显示成功")
+            showToast("从图库选取的图片显示成功")
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+        MyApplication.context = this
         initComponent()
     }
 

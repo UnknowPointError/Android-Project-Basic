@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import cn.example.androidProject.MyApplication
 import cn.example.androidProject.R
 import cn.example.androidProject.databinding.NewsContentActivityBinding
 
@@ -33,6 +34,7 @@ class NewsContentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val mBinding = NewsContentActivityBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        MyApplication.context = this
         val title = intent.getStringExtra("news_title")
         val content = intent.getStringExtra("news_content")
         if (title != null && content != null) {
