@@ -19,6 +19,6 @@ class ToBootComplete : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         MyApplication.context = context
-        showToast("Boot Complete")
+        context.showToast("Boot Complete")
     }
 }

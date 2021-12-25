@@ -42,7 +42,7 @@ class CollapsingToolBarActivity : AppCompatActivity() {
 
     private fun initComponent() {
         val fruitName = intent.getStringExtra(FRUIT_NAME) ?: "This is CollapsingToolBarActivity"
-        val fruitImageID = intent.getIntExtra(FRUIT_IMAGE_ID, R.drawable.a7)
+        val fruitImageID = intent.getIntExtra(FRUIT_IMAGE_ID, R.drawable.messi)
         setSupportActionBar(mBinding.toolBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         mBinding.collapsingToolbar.title = fruitName

@@ -35,7 +35,7 @@ class DatabaseActivity : AppCompatActivity() {
         override fun onCreate(db: SQLiteDatabase) {
             db.execSQL(createBook)
             db.execSQL(createCategory)
-            showToast("Create Succeeded")
+            context.showToast("Create Succeeded")
         }
 
         override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

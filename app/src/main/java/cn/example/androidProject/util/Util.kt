@@ -86,13 +86,13 @@ object Util {
      * @Description:
      * @DateTime: 2021/11/4 17:11
      **************************/
-    fun showToast(text: String, displayTimeMode: Boolean = false) {
+    fun Context.showToast(text: String, displayTimeMode: Boolean = false) {
         if (toast != null)
             (toast ?: return).cancel()// 当toast为null时返回冒号后面的值，只有return则退出
         toast = if (!displayTimeMode)
-            Toast.makeText(MyApplication.context, text, Toast.LENGTH_SHORT)
+            Toast.makeText(this, text, Toast.LENGTH_SHORT)
         else
-            Toast.makeText(MyApplication.context, text, Toast.LENGTH_LONG)
+            Toast.makeText(this, text, Toast.LENGTH_LONG)
         toast?.show()
     }
 

@@ -45,7 +45,7 @@ class RecyclerAdapter(
         val mBinding = FruitBinding.bind(LayoutInflater.from(parent.context)
             .inflate(R.layout.fruit, parent, false))
         val holder = ViewHolder(mBinding)
-        holder.view.setOnClickListener { itemClick(fruitList[holder.adapterPosition]) }
+//        holder.view.setOnClickListener { itemClick(fruitList[holder.adapterPosition]) }
         return holder
     }
 }

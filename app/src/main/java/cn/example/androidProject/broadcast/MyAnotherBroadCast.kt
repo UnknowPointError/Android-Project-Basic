@@ -17,7 +17,7 @@ import cn.example.androidProject.util.Util.showToast
  **************************/
 class MyAnotherBroadCast : BroadcastReceiver(){
     override fun onReceive(context: Context, intent: Intent?) {
-        showToast("接收自定义其他广播")
+        context.showToast("接收自定义其他广播")
         abortBroadcast()
     }
 }

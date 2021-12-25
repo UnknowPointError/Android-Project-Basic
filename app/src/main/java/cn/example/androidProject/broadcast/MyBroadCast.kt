@@ -18,6 +18,6 @@ import cn.example.androidProject.util.Util.showToast
 class MyBroadCast : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent?) {
-        showToast("接受自定义广播")
+        context.showToast("接受自定义广播")
     }
 }

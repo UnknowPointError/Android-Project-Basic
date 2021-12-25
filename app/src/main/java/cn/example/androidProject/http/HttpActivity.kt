@@ -11,6 +11,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.RequestBody
 import org.json.JSONArray
 import org.xml.sax.Attributes
 import org.xml.sax.InputSource
@@ -92,7 +93,7 @@ class HttpActivity : AppCompatActivity() {
         }
     }
 
-    inner class App(val id: String, val name: String, val version: String)
+    class App(val id: String, val name: String, val version: String)
 
     companion object {
         private const val HTTP_XML_DATA = "http://120.79.132.118/get_data.xml"
@@ -107,7 +108,7 @@ class HttpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
-MyApplication.context = this
+        MyApplication.context = this
         initComponent()
     }
 
@@ -136,7 +137,7 @@ MyApplication.context = this
 
     private fun retroFit() {
         isRun = true
-        mBinding.progressBar.visibility= View.VISIBLE
+        mBinding.progressBar.visibility = View.VISIBLE
         val retrofit = Retrofit.Builder()
             .baseUrl(RETROFIT_JSON_DATA)
             .addConverterFactory(GsonConverterFactory.create())

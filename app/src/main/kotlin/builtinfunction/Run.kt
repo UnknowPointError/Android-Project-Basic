@@ -8,7 +8,7 @@ package builtinfunction
  * @Time: 2021/10/28 13:01
  * @Day:  星期四
  * @Description:
- **************************/
+ ***********************/
 class Run {
 
     fun toRun() {
@@ -22,7 +22,6 @@ class Run {
             true
         }
         println("j = $j")
-
     }
 
     private fun isLength(str: String): Boolean = str.length > 5
@@ -31,5 +30,5 @@ class Run {
 
 fun main() {
     val run = Run()
-    run.toRun()
+    println(run.toRun())
 }

@@ -21,6 +21,29 @@
         android:theme="@style/Theme.AndroidProject"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".study.swipe.SwipeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".study.xuanZhuan.XuanZhuanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".study.dianZan.DianZanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".study.motionLayout.MotionLayoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".study.tabLayout.TabLayoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".jetpack.myLiveData.MyLiveDataActivity"
+            android:exported="false"
+            android:label="MyLiveData"
+            android:theme="@style/Transparent" />
+        <activity
+            android:name=".study.viewPager.ViewPagerActivity"
+            android:exported="false" />
+        <activity
             android:name=".jetpack.room.RoomActivity"
             android:exported="false"
             android:label="Room"

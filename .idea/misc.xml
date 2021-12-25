@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BuildAttributionWarningsFilter">
+    <option name="noGCSettingWarning" value="true" />
+  </component>
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout-land/news_activity.xml" value="0.434375" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout-land/study_login__activity.xml" value="0.334375" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout-land/study_tablayout_activity.xml" value="0.1" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout-sw600dp/layout.xml" value="0.1015625" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout-sw600dp/new_content_600.xml" value="0.203515625" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout-sw600dp/new_content_600s.xml" value="0.1015625" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout-sw600dp/news_activity.xml" value="0.29296875" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/activity_main.xml" value="0.3177083333333333" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/activity_main2.xml" value="0.2660878447395301" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/basic_actiivty.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/camera_album_activity.xml" value="0.3" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/contacts_activity.xml" value="0.390625" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/data_base_provider_activity.xml" value="0.390625" />
@@ -19,9 +26,11 @@
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/http_activity.xml" value="0.18518518518518517" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/http_url_activity.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/jetpack_livedata_activity.xml" value="0.2" />
-        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/jetpack_room_activity.xml" value="0.2713541666666667" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/jetpack_mylivedata_activity.xml" value="0.176" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/jetpack_room_activity.xml" value="0.12867647058823528" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/jetpack_viewmodel_activity.xml" value="0.264" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/layout.xml" value="0.13541666666666666" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/layout1.xml" value="0.25833333333333336" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/login_activity.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/loginoffline_activity.xml" value="0.22083333333333333" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/material_cardview_activity.xml" value="0.2713541666666667" />
@@ -46,6 +55,16 @@
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/notifycation_notice.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/service_activity.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/storage_activity.xml" value="0.390625" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/study_dianzan_activity.xml" value="0.4" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/study_login__activity.xml" value="0.4" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/study_login_activity.xml" value="1.0" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/study_motionlayout_activity.xml" value="0.25" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/study_swipe_activity.xml" value="0.128" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/study_tablayout_activity.xml" value="0.25833333333333336" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/study_tablayout_fragment.xml" value="0.12512613521695257" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/study_viewpager_activity.xml" value="0.25833333333333336" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/study_viewpager_item.xml" value="0.152" />
+        <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/study_xuanzhuan_activity.xml" value="0.4" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/talk_activity.xml" value="0.2518518518518518" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/test.xml" value="0.2713541666666667" />
         <entry key="..\:/Barry/B_study/Android/Android_Project/Project_1/app/src/main/res/layout/ttes.xml" value="0.2713541666666667" />

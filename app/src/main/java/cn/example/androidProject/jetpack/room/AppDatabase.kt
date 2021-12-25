@@ -16,7 +16,7 @@ import cn.example.androidProject.jetpack.UserDao
  * @Description:
  **************************/
 
-@Database(version = 1, entities = [User::class])
+@Database(version = 1, entities = [User::class],exportSchema=false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao

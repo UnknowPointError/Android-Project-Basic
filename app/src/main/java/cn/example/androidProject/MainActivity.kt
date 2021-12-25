@@ -25,6 +25,7 @@ import cn.example.androidProject.contentProvider.getContacts.ContactsActivity
 import cn.example.androidProject.databinding.ActivityMainBinding
 import cn.example.androidProject.fragment.NewsActivity
 import cn.example.androidProject.jetpack.liveData.LiveDataActivity
+import cn.example.androidProject.jetpack.myLiveData.MyLiveDataActivity
 import cn.example.androidProject.jetpack.room.RoomActivity
 import cn.example.androidProject.jetpack.viewModel.ViewModelActivity
 import cn.example.androidProject.listView.ListActivity
@@ -42,6 +43,12 @@ import cn.example.androidProject.service.ServiceActivity
 import cn.example.androidProject.storage.filePersistence.FileActivity
 import cn.example.androidProject.storage.sharedPreferences.SharedPreferencesActivity
 import cn.example.androidProject.storage.sqLite.DatabaseActivity
+import cn.example.androidProject.study.dianZan.DianZanActivity
+import cn.example.androidProject.study.motionLayout.MotionLayoutActivity
+import cn.example.androidProject.study.swipe.SwipeActivity
+import cn.example.androidProject.study.tabLayout.TabLayoutActivity
+import cn.example.androidProject.study.viewPager.ViewPagerActivity
+import cn.example.androidProject.study.xuanZhuan.XuanZhuanActivity
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 /*************************
@@ -157,12 +164,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 viewModel.id -> startActivity<ViewModelActivity> { }
                 liveData.id -> startActivity<LiveDataActivity> { }
                 room.id -> startActivity<RoomActivity> { }
+                viewPager2Btn.id -> startActivity<ViewPagerActivity> { }
+                myLiveData.id -> startActivity<MyLiveDataActivity> { }
+                tabLayoutBtn.id -> startActivity<TabLayoutActivity> { }
+                motionLayout.id -> startActivity<MotionLayoutActivity> { }
+                dianZan.id -> startActivity<DianZanActivity> { }
+                xuanZhuan.id -> startActivity<XuanZhuanActivity> { }
+                swipe.id -> startActivity<SwipeActivity> { }
             }
         }
     }
 
     private fun initComponent() {
         mBinding.apply {
+            swipe.setOnClickListener(main)
+            xuanZhuan.setOnClickListener(main)
             basicBtn.setOnClickListener(main)
             basicListviewBtn.setOnClickListener(main)
             listviewBtn.setOnClickListener(main)
@@ -196,6 +212,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             viewModel.setOnClickListener(main)
             liveData.setOnClickListener(main)
             room.setOnClickListener(main)
+            viewPager2Btn.setOnClickListener(main)
+            myLiveData.setOnClickListener(main)
+            tabLayoutBtn.setOnClickListener(main)
+            motionLayout.setOnClickListener(main)
+            dianZan.setOnClickListener(main)
         }
     }
 
@@ -228,7 +249,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 )
                 .setStyle(
                     NotificationCompat.BigPictureStyle()
-                        .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.a3))
+                        .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.dage))
                 )
                 .setSmallIcon(R.drawable.apple_pic)
                 .setContentIntent(pi)

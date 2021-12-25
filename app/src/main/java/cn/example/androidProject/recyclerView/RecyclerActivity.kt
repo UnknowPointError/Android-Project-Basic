@@ -26,7 +26,7 @@ class RecyclerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
-MyApplication.context = this
+        MyApplication.context = this
         initComponent()
     }
 

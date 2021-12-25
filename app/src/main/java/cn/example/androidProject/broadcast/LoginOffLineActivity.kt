@@ -24,16 +24,22 @@ class LoginOffLineActivity : AppCompatActivity() {
 
     inner class LoginForceOffLine : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            AlertDialog.Builder(LoginActivityCollector.getTopActivity(),
-                R.style.Theme_AppCompat_Dialog)
+            AlertDialog.Builder(
+                LoginActivityCollector.getTopActivity(),
+                R.style.Theme_AppCompat_Dialog
+            )
                 .apply {
                     setTitle("Warning")
                     setMessage("You are forced to be offline.Please try to login again.")
                     setCancelable(false)
                     setPositiveButton("OK") { _, _ ->
                         LoginActivityCollector.finishAll()
-                        context.startActivity(Intent(context,
-                            LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                        context.startActivity(
+                            Intent(
+                                context,
+                                LoginActivity::class.java
+                            ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        )
                     }
                     show()
                 }
@@ -46,7 +52,7 @@ class LoginOffLineActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
-MyApplication.context = this
+        MyApplication.context = this
         LoginActivityCollector.addActivity(this)
         mBinding.offLine.setOnClickListener {
             val intent = Intent("OFFLINE")

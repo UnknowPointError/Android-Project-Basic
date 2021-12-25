@@ -37,7 +37,7 @@ class BasicActivity : AppCompatActivity() {
                         progreBar.visibility = View.INVISIBLE
                         val mainLinearTag = mainLinear.tag
                         if (mainLinearTag == null || mainLinearTag == "set1") {
-                            mainLinear.setBackgroundResource(R.drawable.a1)
+                            mainLinear.setBackgroundResource(R.drawable.smile)
                             mainLinear.tag = "set2"
                             val value = resources.getColor(R.color.white, resources.newTheme())
                             edit1.setHintTextColor(value)
@@ -46,7 +46,7 @@ class BasicActivity : AppCompatActivity() {
                             edit2.setTextColor(value)
                             text.setTextColor(value)
                         } else if (mainLinearTag == "set2") {
-                            mainLinear.setBackgroundResource(R.drawable.a2)
+                            mainLinear.setBackgroundResource(R.drawable.xuexiaoban)
                             mainLinear.tag = "set1"
                             val value = resources.getColor(R.color.black, resources.newTheme())
                             edit1.setHintTextColor(value)
