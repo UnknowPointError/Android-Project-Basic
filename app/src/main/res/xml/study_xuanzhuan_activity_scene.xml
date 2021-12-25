@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        android:id="@+id/forward"
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="2000">
+        <KeyFrameSet>
+            <KeyAttribute
+                android:rotation="0"
+                motion:framePosition="20"
+                motion:motionTarget="@+id/circle_iv" />
+            <KeyAttribute
+                android:rotation="360"
+                motion:framePosition="50"
+                motion:motionTarget="@+id/circle_iv" />
+            <KeyAttribute
+                android:rotation="360"
+                motion:framePosition="70"
+                motion:motionTarget="@+id/circle_iv" />
+            <KeyAttribute
+                android:scaleX="1.0"
+                android:scaleY="1.0"
+                motion:framePosition="20"
+                motion:motionTarget="@+id/circle_tv" />
+            <KeyAttribute
+                android:scaleX="0.1"
+                android:scaleY="0.1"
+                motion:framePosition="35"
+                motion:motionTarget="@+id/circle_tv" />
+            <KeyAttribute
+                android:scaleX="1.0"
+                android:scaleY="1.0"
+                motion:framePosition="50"
+                motion:motionTarget="@+id/circle_tv" />
+            <KeyAttribute
+                android:scaleX="1.0"
+                android:scaleY="1.0"
+                motion:framePosition="70"
+                motion:motionTarget="@+id/circle_tv" />
+            <KeyAttribute
+                android:scaleX="0.1"
+                android:scaleY="0.1"
+                motion:framePosition="85"
+                motion:motionTarget="@+id/circle_tv" />
+            <KeyTrigger
+                motion:framePosition="35"
+                motion:motionTarget="@+id/circle_tv"
+                motion:onCross="changeTextToAdd" />
+            <KeyTrigger
+                motion:framePosition="85"
+                motion:motionTarget="@+id/circle_tv"
+                motion:onCross="changeToM" />
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start" />
+
+    <ConstraintSet android:id="@+id/end" />
+    <Transition
+        motion:constraintSetStart="@+id/end"
+        motion:constraintSetEnd="@+id/start"
+        android:id="@+id/revert"
+        motion:duration="100" />
+</MotionScene>

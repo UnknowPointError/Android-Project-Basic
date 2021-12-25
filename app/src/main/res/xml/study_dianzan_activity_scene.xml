@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="500"
+        android:id="@+id/forward"
+        >
+        <KeyFrameSet>
+            <KeyAttribute
+                motion:motionTarget="@+id/imageButton1"
+                motion:framePosition="20"
+                android:scaleX="0.3"
+                android:scaleY="0.3"
+                motion:transitionEasing="decelerate"
+                >
+                <CustomAttribute
+                    motion:attributeName="crossfade"
+                    motion:customFloatValue="1" />
+            </KeyAttribute>
+            <KeyAttribute
+                motion:motionTarget="@+id/imageButton1"
+                motion:framePosition="80"
+                android:scaleX="1.2"
+                android:scaleY="1.2"/>
+            <KeyAttribute
+                motion:motionTarget="@+id/imageButton1"
+                motion:framePosition="90"
+                android:scaleX="0.9"
+                android:scaleY="0.9"/>
+        </KeyFrameSet>
+    </Transition>
+
+
+    <ConstraintSet android:id="@+id/start" >
+        <Constraint
+            android:id="@+id/imageButton1"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent">
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="0" />
+        </Constraint>
+    </ConstraintSet>
+
+<ConstraintSet android:id="@+id/end">
+    <Constraint
+        android:id="@+id/imageButton1"
+        motion:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        motion:layout_constraintBottom_toBottomOf="parent"
+        motion:layout_constraintTop_toTopOf="parent"
+        motion:layout_constraintStart_toStartOf="parent" >
+        <CustomAttribute
+            motion:attributeName="crossfade"
+            motion:customFloatValue="1" />
+    </Constraint>
+</ConstraintSet>
+    <Transition
+        motion:constraintSetStart="@+id/end"
+        motion:constraintSetEnd="@+id/start"
+        android:id="@+id/revert"
+        motion:duration="100" />
+</MotionScene>
